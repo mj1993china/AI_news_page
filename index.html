@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 推文 · 卡片墙</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a;
+    --ink-light: #475569;
+    --ink-muted: #94a3b8;
+    --paper: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; min-height: 100vh; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+
+  /* 头部 */
+  .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+  .header-left h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .header-left .sub { font-size: 24px; color: var(--ink-muted); margin-top: 4px; }
+  .header-right { font-size: 22px; color: var(--ink-muted); text-align: right; letter-spacing: 0.04em; }
+  .header-right .num { font-size: 56px; font-weight: 700; color: var(--ink); line-height: 1; }
+
+  /* 作者分组 */
+  .author-group { margin-bottom: 40px; }
+  .author-label {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .author-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+  }
+  .author-name { font-size: 26px; font-weight: 600; color: var(--ink-light); }
+  .author-count { font-size: 22px; color: var(--ink-muted); margin-left: auto; }
+
+  /* 3 列网格 */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  /* 卡片 */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px; display: flex; flex-direction: column; gap: 10px;
+    transition: all 0.2s; cursor: pointer; text-decoration: none; color: inherit;
+    position: relative; overflow: hidden;
+  }
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,.06);
+    transform: translateY(-1px);
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+
+  .card-top { display: flex; align-items: center; justify-content: space-between; }
+  .card-date { font-size: 11px; color: var(--ink-muted); }
+  .card-badge {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.08em;
+    padding: 2px 8px; border-radius: 999px;
+  }
+
+  .card-title {
+    font-size: 18px; font-weight: 600; line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .card-body {
+    font-size: 16px; line-height: 1.6; color: var(--ink-light);
+    flex: 1;
+  }
+  .card-link {
+    font-size: 12px; font-weight: 500; color: var(--ink-muted);
+    letter-spacing: 0.04em; display: flex; align-items: center; gap: 4px;
+  }
+  .card-link svg { width: 10px; height: 10px; }
+
+  /* 底部 */
+  .footer {
+    text-align: center; margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 22px; color: var(--ink-muted); letter-spacing: 0.06em;
+  }
+
+  /* 加载状态 */
+  .loading {
+    text-align: center; padding: 120px 0;
+    font-size: 20px; color: var(--ink-muted);
+  }
+  .loading .spinner {
+    display: inline-block; width: 24px; height: 24px;
+    border: 3px solid var(--border); border-top-color: var(--ink-muted);
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+    margin-bottom: 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 错误状态 */
+  .error-state {
+    text-align: center; padding: 120px 0;
+    font-size: 18px; color: #ef4444;
+  }
+
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div>加载推文数据...</div>
+  </div>
+</div>
+
+<script>
+// 博主颜色调色板（6 色，按 bloggers.json 索引自动轮换）
+const AUTHOR_COLORS = [
+  { color: '#6366f1', bg: '#eef2ff' },  // 靛蓝
+  { color: '#f43f5e', bg: '#fff1f2' },  // 玫红
+  { color: '#f59e0b', bg: '#fffbeb' },  // 琥珀
+  { color: '#10b981', bg: '#ecfdf5' },  // 翠绿
+  { color: '#8b5cf6', bg: '#f5f3ff' },  // 紫罗兰
+  { color: '#06b6d4', bg: '#ecfeff' },  // 青蓝
+];
+
+// Badge 分类关键词
+const BADGE_KEYWORDS = {
+  '工具': ['tool', 'agent', 'mcp', 'api', 'sdk', 'plugin', 'extension', 'app',
+           'editor', 'vscode', 'cursor', 'windsurf', 'codex', 'devin', '工具',
+           '平台', 'product', 'startup', 'launch', 'release', '发布'],
+  '模型': ['model', 'gpt', 'claude', 'gemini', 'llama', 'deepseek', 'qwen', 'mistral',
+           'o1', 'o3', 'o4', 'sonnet', 'opus', 'haiku',
+           'benchmark', '训练', '参数', 'token', 'context window'],
+  '洞察': ['future', '趋势', 'prediction', 'opinion', 'think', 'believe',
+           '为什么', '如何', '观点', '思考', 'insight', 'perspective',
+           'industry', 'market', '经济', '影响'],
+};
+
+// 博主列表（与 bloggers.json 保持一致，用于颜色排序）
+const PRIMARY_AUTHORS = ['op7418', 'billtheinvestor', 'karpathy', 'Khazix0918', 'canghe'];
+const FALLBACK_AUTHORS = ['fchollet', 'sama', 'simonw', 'elonmusk', 'jeremyphoward',
+                          'swyx', 'DemisHassabis', 'AndrewYNg', 'bindureddy', '_philschmid'];
+const ALL_AUTHORS = [...PRIMARY_AUTHORS, ...FALLBACK_AUTHORS];
+
+function classifyBadge(text) {
+  const lower = (text || '').toLowerCase();
+  for (const [badge, keywords] of Object.entries(BADGE_KEYWORDS)) {
+    for (const kw of keywords) {
+      if (lower.includes(kw)) return badge;
+    }
+  }
+  return '洞察';
+}
+
+function getColorIndex(author) {
+  const idx = ALL_AUTHORS.indexOf(author);
+  return idx >= 0 ? idx : ALL_AUTHORS.length;
+}
+
+function getAuthorSlug(author) {
+  return 'u' + author.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+async function loadAndRender() {
+  const container = document.querySelector('.container');
+  const loading = document.getElementById('loading');
+
+  try {
+    const resp = await fetch('timeline.json');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const tweets = await resp.json();
+
+    if (!tweets || tweets.length === 0) {
+      loading.innerHTML = '<div class="error-state">暂无推文数据</div>';
+      return;
+    }
+
+    // 按作者分组
+    const byAuthor = {};
+    for (const t of tweets) {
+      const author = (t.author || '').replace(/^@/, '');
+      if (author) {
+        if (!byAuthor[author]) byAuthor[author] = [];
+        byAuthor[author].push(t);
+      }
+    }
+
+    // 排序：primary 先，fallback 后
+    const primaryAuthors = PRIMARY_AUTHORS.filter(a => byAuthor[a]);
+    const fallbackAuthors = FALLBACK_AUTHORS.filter(a => byAuthor[a]);
+    const otherAuthors = Object.keys(byAuthor).filter(a =>
+      !PRIMARY_AUTHORS.includes(a) && !FALLBACK_AUTHORS.includes(a));
+    const orderedAuthors = [...primaryAuthors, ...fallbackAuthors, ...otherAuthors];
+
+    // 动态生成作者 CSS
+    let authorCSS = '';
+    for (const author of orderedAuthors) {
+      const slug = getAuthorSlug(author);
+      const colorIdx = getColorIndex(author);
+      const { color, bg } = AUTHOR_COLORS[colorIdx % AUTHOR_COLORS.length];
+      authorCSS += `
+  .author-${slug} .card::before { background: ${color}; }
+  .author-${slug} .card:hover { border-color: ${color}4d; }
+  .author-${slug} .author-dot { background: ${color}; }
+  .author-${slug} .card-badge { background: ${bg}; color: ${color}; }`;
+    }
+
+    // 注入作者样式
+    const styleEl = document.createElement('style');
+    styleEl.textContent = authorCSS;
+    document.head.appendChild(styleEl);
+
+    // 生成 HTML
+    const today = new Date().toISOString().slice(0, 10);
+    let html = '';
+
+    // 头部
+    html += `
+  <div class="header">
+    <div class="header-left">
+      <h1>AI 推文 · 精选</h1>
+      <div class="sub">${today} · daily_ai_github_monitor</div>
+    </div>
+    <div class="header-right">
+      <div class="num">${tweets.length}</div>
+      条推文
+    </div>
+  </div>`;
+
+    // 每个作者的卡片
+    for (const author of orderedAuthors) {
+      const authorTweets = byAuthor[author];
+      const isPrimary = PRIMARY_AUTHORS.includes(author);
+      const displayTweets = isPrimary ? authorTweets.slice(0, 5) : authorTweets.slice(0, 1);
+      const slug = getAuthorSlug(author);
+
+      let cardsHtml = '';
+      for (const t of displayTweets) {
+        const summary = t.summary_zh || t.content_text || '';
+        const displaySummary = summary.length > 200 ? summary.slice(0, 197) + '...' : summary;
+        const url = t.url || '#';
+        const date = t.tweet_date || '';
+        const badge = classifyBadge((t.content_text || '') + ' ' + summary);
+        const title = (t.title || '').replace(/^🐦\s*@\w+[：:]\s*/, '');
+
+        cardsHtml += `
+        <a href="${escapeHtml(url)}" target="_blank" class="card">
+          <div class="card-top">
+            <span class="card-date">${escapeHtml(date)}</span>
+            <span class="card-badge">${escapeHtml(badge)}</span>
+          </div>
+          <div class="card-title">${escapeHtml(title)}</div>
+          <div class="card-body">${escapeHtml(displaySummary)}</div>
+          <div class="card-link">
+            查看原文
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </div>
+        </a>`;
+      }
+
+      const label = isPrimary ? '' : '（推荐）';
+      html += `
+  <div class="author-group author-${slug}">
+    <div class="author-label">
+      <span class="author-dot"></span>
+      <span class="author-name">@${escapeHtml(author)}</span>
+      <span class="author-count">${displayTweets.length} 条</span>
+    </div>
+    <div class="grid">${cardsHtml}
+    </div>
+  </div>`;
+    }
+
+    // 底部
+    html += `
+  <div class="footer">
+    Playwright · AI Filter · ${ALL_AUTHORS.length} KOLs monitored · auto-generated
+  </div>`;
+
+    container.innerHTML = html;
+
+  } catch (err) {
+    loading.innerHTML = `<div class="error-state">加载失败: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+loadAndRender();
+</script>
+</body>
+</html>
