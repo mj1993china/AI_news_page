@@ -1,5 +1,55 @@
 [
   {
+    "item_id": "twitter:billtheinvestor:2051044296154042415",
+    "title": "ANTHROPIC has just released the official guide to building a company using Claud",
+    "source_label": "🧠 @billtheinvestor",
+    "content_text": "ANTHROPIC has just released the official guide to building a company using Claude Code.\n\nCEO: 1 human.\nEmployees: AI agents.\nOperations: fully automated.\n\nZero-employee companies are no longer a joke.",
+    "summary_zh": "ANTHROPIC has just released the official guide to building a company using Claude Code.\n\nCEO: 1 human.\nEmployees: AI agents.\nOperations: fully automated.\n\nZero-employee companies are no longer a joke.",
+    "url": "https://x.com/billtheinvestor/status/2051044296154042415",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-03"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2051043836504269189",
+    "title": "6 Open-Source Libraries for Fine-Tuning LLMs",
+    "source_label": "🧠 @billtheinvestor",
+    "content_text": "6 Open-Source Libraries for Fine-Tuning LLMs\n\n1. Unsloth\nGitHub: \nhttps://\ngithub.com/unslothai/unsl\noth\n…\n…\n→ The fastest way to fine-tune LLMs locally\n→ Optimized for low VRAM (even supports laptops)\n→ Plug-and-play with Hugging Face models\n\n2. Axolotl\nGitHub: \nhttps://\ngithub.com/OpenAccess-AI-\nCollective/axolotl\n…\n…\n→",
+    "summary_zh": "【AI总结】推荐6个用于微调大语言模型的开源库，包括Unsloth、Axolotl等，助您高效本地微调。",
+    "url": "https://x.com/billtheinvestor/status/2051043836504269189",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-03"
+  },
+  {
+    "item_id": "twitter:swyx:2050753293601935777",
+    "title": "Much respect to",
+    "source_label": "🎨 @swyx（推荐）",
+    "content_text": "Much respect to \n@tokengobbler\n who shutdown Vibe-kanban live onstage at AIE Europe - still with 30,000 MAU, and still living on as an open source project.\n\n\"Everyone who is making money is doing 2 things: selling to enterprise, and reselling tokens. We were doing neither.\"\n\nSoftware Engineering Is Becoming Plan and Review\n\n\nhttps://\nyoutube.com/watch?v=W76woO\nYHlvY\n…\n\nAI eats the middle. If software engineers are spending more of their time planning work and reviewing AI output, then the biggest lever for shipping faster is improving planning and review.\n\nIn this",
+    "summary_zh": "Much respect to \n@tokengobbler\n who shutdown Vibe-kanban live onstage at AIE Europe - still with 30,000 MAU, and still living on as an open source project.\n\n\"Everyone who is making money is doing 2...",
+    "url": "https://x.com/swyx/status/2050753293601935777",
+    "author": "@swyx",
+    "tweet_date": "2026-05-03"
+  },
+  {
+    "item_id": "twitter:bindureddy:2048426988281758078",
+    "title": "Where is Google in the midst of all this drama?",
+    "source_label": "🧪 @bindureddy（推荐）",
+    "content_text": "Where is Google in the midst of all this drama? \n\nIt’s like Gemini is missing from all this action \n\nIt’s high time they dropped a model",
+    "summary_zh": "【AI总结】谷歌的Gemini在AI热潮中毫无动作，被指应该赶紧发布模型了。",
+    "url": "https://x.com/bindureddy/status/2048426988281758078",
+    "author": "@bindureddy",
+    "tweet_date": "2026-04-26"
+  },
+  {
+    "item_id": "twitter:_philschmid:2049511239147983324",
+    "title": "I wrote a developer getting-started guide on how to build and run Deep Research",
+    "source_label": "🌈 @_philschmid（推荐）",
+    "content_text": "I wrote a developer getting-started guide on how to build and run Deep Research workflows with the Gemini API, from setup to streaming results.\n\n- asynchronous research with `background=True`.\n- collaborative planning and explicit approval.\n- Generate inline charts and",
+    "summary_zh": "【AI总结】开发者指南：用Gemini API构建Deep Research工作流，支持异步、协作和内联图表。",
+    "url": "https://x.com/_philschmid/status/2049511239147983324",
+    "author": "@_philschmid",
+    "tweet_date": "2026-04-29"
+  },
+  {
     "item_id": "twitter:billtheinvestor:2050828464081838553",
     "title": "This guy just built a clipping agent inside OpenClaw! You can now have an intell",
     "source_label": "🧠 @billtheinvestor",
