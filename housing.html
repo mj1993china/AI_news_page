@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="zh-CN" id="top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>肇庆端州区楼盘情报看板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --ink: rgba(0,0,0,.95);
+      --ink-heading: #23251d;
+      --muted: #615d59;
+      --muted-light: #a39e98;
+      --line: rgba(0,0,0,.10);
+      --line-soft: rgba(0,0,0,.06);
+      --bg: #ffffff;
+      --bg-alt: #f6f5f4;
+      --accent: #0075de;
+      --accent-light: #f2f9ff;
+      --accent-text: #097fe8;
+      --green: #1e7e34;
+      --green-bg: #e6f4ea;
+      --orange: #e65100;
+      --orange-bg: #fff3e0;
+      --chip-bg: #f1f1ef;
+      --shadow-card: rgba(0,0,0,.04) 0 4px 18px, rgba(0,0,0,.027) 0 2px 7.8px, rgba(0,0,0,.02) 0 .8px 2.9px, rgba(0,0,0,.01) 0 .175px 1px;
+      --shadow-card-hover: rgba(0,0,0,.06) 0 8px 30px, rgba(0,0,0,.04) 0 4px 14px, rgba(0,0,0,.03) 0 1.5px 5px;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --sans: "Inter", "Noto Sans SC", -apple-system, system-ui, "Segoe UI", Helvetica, "Microsoft YaHei UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.50;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: min(1200px, calc(100vw - 40px)); margin: 0 auto; padding: 0 0 82px; }
+    .top-nav { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); font-family: var(--sans); font-size: 14px; color: var(--muted); }
+    .top-nav span { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+    .top-nav svg { width: 16px; height: 16px; stroke-width: 1.8; color: var(--muted-light); }
+    .top-nav .brand { color: var(--ink); font-weight: 600; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: start; padding: 48px 0 40px; }
+    .eyebrow { display: inline-block; color: var(--accent); font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .4px; text-transform: uppercase; margin-bottom: 16px; }
+    h1 { margin: 0 0 14px; font-family: var(--sans); font-size: clamp(32px, 5vw, 56px); line-height: 1.10; letter-spacing: -1.5px; font-weight: 700; color: var(--ink-heading); max-width: 720px; }
+    .lead { margin: 0; max-width: 640px; color: var(--muted); font-size: 18px; font-weight: 400; line-height: 1.50; }
+    .overview-note { padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-alt); color: var(--muted); font-size: 15px; line-height: 1.50; }
+    .overview-note b { display: block; margin-bottom: 8px; color: var(--ink-heading); font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .4px; text-transform: uppercase; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 40px; }
+    .metric { padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); box-shadow: var(--shadow-card); }
+    .metric b { display: block; margin-bottom: 6px; color: var(--accent); font-family: var(--sans); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.10; font-weight: 700; letter-spacing: -0.8px; }
+    .metric span { display: block; color: var(--muted); font-size: 13px; font-weight: 500; }
+    .districts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; }
+    .district-count { display: inline-flex; gap: 6px; align-items: center; padding: 6px 14px; border-radius: 9999px; background: var(--accent-light); color: var(--accent-text); font-size: 13px; font-weight: 500; }
+    .district-count b { color: var(--accent); font-weight: 600; }
+    .section-head { display: flex; justify-content: space-between; gap: 18px; align-items: flex-end; margin: 40px 0 20px; padding-top: 24px; border-top: 1px solid var(--line); }
+    h2.section-title { margin: 0; font-family: var(--sans); font-size: 26px; font-weight: 700; color: var(--ink-heading); letter-spacing: -0.4px; }
+    .section-head p { margin: 0; color: var(--muted-light); text-align: right; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
+    .filter-tab { border: 1px solid var(--line); border-radius: 9999px; padding: 5px 14px; background: var(--bg); color: var(--muted); font-family: var(--sans); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; }
+    .filter-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .filter-tab b { font-weight: 600; margin-left: 2px; }
+    .filter-tab.active b { color: #fff; }
+    .filter-count { margin-left: auto; color: var(--muted-light); font-size: 13px; }
+    .filter-count b { color: var(--ink); font-weight: 600; }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); box-shadow: var(--shadow-card); transition: box-shadow .2s; position: relative; }
+    .change-badge { position: absolute; top: 10px; right: 10px; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; letter-spacing: .2px; }
+    .badge-new { background: #e6f4ea; color: #1e7e34; }
+    .badge-updated { background: #fff3e0; color: #e65100; }
+    .card:hover { box-shadow: var(--shadow-card-hover); }
+    .card-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
+    .status { border-radius: 9999px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+    .district { border: 1px solid var(--line); border-radius: 9999px; padding: 2px 8px; font-size: 11px; font-weight: 500; color: var(--muted); }
+    .status-active .status { background: var(--green-bg); color: var(--green); }
+    .status-pending .status, .status-unknown .status { background: var(--orange-bg); color: var(--orange); }
+    .source { display: inline-flex; margin: 2px 4px 0 0; color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 500; }
+    .source:hover { text-decoration: underline; }
+    .muted-source { color: var(--muted-light); text-decoration: none; cursor: default; }
+    h2 { margin: 0 0 6px; font-family: var(--sans); font-size: 16px; line-height: 1.30; font-weight: 600; color: var(--ink-heading); letter-spacing: -0.2px; }
+    .price { margin-bottom: 4px; color: var(--accent); font-family: var(--sans); font-size: 20px; line-height: 1.1; font-weight: 700; letter-spacing: -0.4px; }
+    .card-address { color: var(--muted-light); font-size: 12px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-features { margin-bottom: 8px; }
+    .trend, .trend-empty { margin: 0 0 8px; padding: 8px; border-radius: 6px; background: var(--accent-light); }
+    .trend-empty { color: var(--muted-light); font-size: 12px; }
+    .trend svg { display: block; width: 100%; height: 36px; }
+    .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .trend circle { fill: #fff; stroke: var(--accent); stroke-width: 1.5; }
+    .trend-meta { display: flex; justify-content: space-between; gap: 6px; align-items: center; color: var(--muted-light); font-family: var(--mono); font-size: 10px; }
+    .trend-meta b { color: var(--ink); font-size: 11px; }
+    .trend-down polyline { stroke: var(--green); }
+    .trend-down circle { stroke: var(--green); }
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip { display: inline-flex; margin: 0 3px 3px 0; padding: 2px 8px; border-radius: 9999px; background: var(--chip-bg); color: var(--ink); font-family: var(--mono); font-size: 10px; font-weight: 500; }
+    .empty { display: none; }
+    .back-top { position: fixed; right: 22px; bottom: 22px; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; background: var(--accent); color: #fff; text-decoration: none; box-shadow: var(--shadow-card); font-size: 20px; transition: opacity .2s; }
+    .back-top:hover { opacity: .85; }
+    @media (max-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 1050px) { .hero { grid-template-columns: 1fr; } .summary { grid-template-columns: repeat(2, 1fr); } .grid { grid-template-columns: repeat(2, 1fr); } .section-head { align-items: flex-start; flex-direction: column; } .section-head p { text-align: left; } }
+    @media (max-width: 680px) { main { width: min(100vw - 24px, 1200px); } .summary, .grid { grid-template-columns: 1fr; } h1 { font-size: 28px; letter-spacing: -0.8px; } .hero { padding: 32px 0 28px; } .filter-bar { gap: 8px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="top-nav" aria-label="看板元信息">
+      <span class="brand"><i data-lucide="scan-search"></i> Housing Watch CN</span>
+      <span><i data-lucide="map-pin"></i> 肇庆 / 端州区</span>
+      <span><i data-lucide="calendar-days"></i> 2026-05-04</span>
+    </nav>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Housing Watch CN / 2026-05-04</div>
+        <h1>肇庆端州区楼盘情报看板</h1>
+        <p class="lead">本页优先展示端州区当前有效楼盘；其他区县只进入总览数量统计。失效楼盘不展开卡片，只保留总数，避免干扰筛选。</p>
+      </div>
+      <aside class="overview-note"><b>数据说明</b>当前数据来自真实 raw 快照和 SQLite。楼盘卡片按名称去重，多个来源会合并到同一张卡片里；有两期以上价格时展示简版趋势线。</aside>
+    </section>
+    <section class="summary" aria-label="本次快照摘要">
+      <div class="metric"><b>49</b><span>端州区有效楼盘卡片</span></div>
+      <div class="metric"><b>45</b><span>端州区在售</span></div>
+      <div class="metric"><b>4</b><span>端州区待售/待核验</span></div>
+      <div class="metric"><b>20</b><span>失效或来源消失总数</span></div>
+      <div class="metric"><b>新增 0</b><span>本次新增记录</span></div>
+      <div class="metric"><b>变更 0</b><span>本次字段变化</span></div>
+      <div class="metric"><b>102</b><span>当前快照端州区记录</span></div>
+    </section>
+    <section aria-label="楼盘卡片">
+      
+      <div class="filter-bar" role="toolbar" aria-label="筛选">
+        <div class="filter-group"><button class="filter-tab active" data-filter="all">全部 <b>49</b></button><button class="filter-tab" data-filter="active">在售 <b>45</b></button><button class="filter-tab" data-filter="pending">待售 <b>4</b></button></div>
+        <div class="filter-count">显示 <b class="visible-count">49</b> / 49</div>
+      </div>
+    
+      <div class="grid">
+        
+        <article class="card status-active" data-status="active" data-district="端州城西">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州城西</span>
+          </div>
+          <h2>囍园</h2>
+          <div class="price">3500 元/㎡</div>
+          <div class="card-address">广东省肇庆市端州区西江北路</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 3500</span>
+          <b>持平</b>
+          <span>2026-05-04 3500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>敏捷水映澜山</h2>
+          <div class="price">4500-6500 元/㎡</div>
+          <div class="card-address">城东七星一路（北岭山森林公园南侧）</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 6500</span>
+          <b>-725 元/㎡</b>
+          <span>2026-05-04 5775</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">卧室全朝南</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59036685/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/450827.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="新东">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">新东</span>
+          </div>
+          <h2>嘉湖四季里</h2>
+          <div class="price">5000 元/㎡</div>
+          <div class="card-address">肇庆市端州区信安二路12号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 5000</span>
+          <b>持平</b>
+          <span>2026-05-04 5000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>恒裕和园</h2>
+          <div class="price">5000 元/㎡</div>
+          <div class="card-address">桥北路恒裕和园</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 5000</span>
+          <b>持平</b>
+          <span>2026-05-04 5000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>恒裕雅轩</h2>
+          <div class="price">5200-6500 元/㎡</div>
+          <div class="card-address">风华路恒裕雅轩</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 6500</span>
+          <b>-650 元/㎡</b>
+          <span>2026-05-04 5850</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">低总价</span><span class="chip">学校</span><span class="chip">购物中心</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59103269/">58Aifang</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>光大江山帝景</h2>
+          <div class="price">5299-6600 元/㎡</div>
+          <div class="card-address">龙塘南路光大江山帝景</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 5950</span>
+          <b>-276 元/㎡</b>
+          <span>2026-05-04 5674</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">卧室全朝南</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59107278/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/521420.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826201880.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="北岭">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">北岭</span>
+          </div>
+          <h2>中梁壹号院</h2>
+          <div class="price">5500 元/㎡</div>
+          <div class="card-address">学院路中梁壹号院</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 5500</span>
+          <b>持平</b>
+          <span>2026-05-04 5500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>星湖裕园</h2>
+          <div class="price">5500 元/㎡</div>
+          <div class="card-address">端州区北岭七星路18号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 5500</span>
+          <b>持平</b>
+          <span>2026-05-04 5500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州区">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州区</span>
+          </div>
+          <h2>壹品华府</h2>
+          <div class="price">5800 元/㎡</div>
+          <div class="card-address">厂排街壹品华府</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 5800</span>
+          <b>持平</b>
+          <span>2026-05-04 5800</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>嘉湖美都</h2>
+          <div class="price">6000 元/㎡</div>
+          <div class="card-address">桂园路嘉湖美都</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 6000</span>
+          <b>持平</b>
+          <span>2026-05-04 6000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>城投星悦名苑</h2>
+          <div class="price">6000-7000 元/㎡</div>
+          <div class="card-address">广东省肇庆市端州区端州一路30号</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 7000</span>
+          <b>-333 元/㎡</b>
+          <span>2026-05-04 6667</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">卧室全朝南</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59106747/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/520889.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>端州名门</h2>
+          <div class="price">6200 元/㎡</div>
+          <div class="card-address">太和北路21号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 6200</span>
+          <b>持平</b>
+          <span>2026-05-04 6200</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>光大锦绣山河</h2>
+          <div class="price">6500-6800 元/㎡</div>
+          <div class="card-address">大鼎路锦绣山河一期</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,21.3 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="21.3" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 6800</span>
+          <b>-150 元/㎡</b>
+          <span>2026-05-04 6650</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">厨卫全明</span><span class="chip">车位充足</span></div>
+          <div class="sources"><a class="source" href="https://zq.fang.anjuke.com/loupan/399893.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>港湾汇广场</h2>
+          <div class="price">6700 元/㎡</div>
+          <div class="card-address">东岗东路港湾汇广场</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 6700</span>
+          <b>持平</b>
+          <span>2026-05-04 6700</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>天峰誉珑轩</h2>
+          <div class="price">6800 元/㎡</div>
+          <div class="card-address">大鼎路天峰誉珑轩</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 6800</span>
+          <b>持平</b>
+          <span>2026-05-04 6800</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>君安峰景四季</h2>
+          <div class="price">7000 元/㎡</div>
+          <div class="card-address">端州一路君安峰景湾</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 7000</span>
+          <b>持平</b>
+          <span>2026-05-04 7000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>城市雅居</h2>
+          <div class="price">7000 元/㎡</div>
+          <div class="card-address">吉兆街1号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 7000</span>
+          <b>持平</b>
+          <span>2026-05-04 7000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>正域尚苑</h2>
+          <div class="price">7000 元/㎡</div>
+          <div class="card-address">二塔路3号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 7000</span>
+          <b>持平</b>
+          <span>2026-05-04 7000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>肇庆·敏捷城</h2>
+          <div class="price">7000-15000 元/㎡</div>
+          <div class="card-address">肇庆市端州区信安路西侧83区</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 11000</span>
+          <b>持平</b>
+          <span>2026-05-04 11000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>鸿景明园</h2>
+          <div class="price">7000-8200 元/㎡</div>
+          <div class="card-address">西江北路46号</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,21.3 86.0,21.3 112.0,21.3 138.0,21.3 164.0,21.3" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="21.3" r="2.6" /><circle cx="86.0" cy="21.3" r="2.6" /><circle cx="112.0" cy="21.3" r="2.6" /><circle cx="138.0" cy="21.3" r="2.6" /><circle cx="164.0" cy="21.3" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 8200</span>
+          <b>-400 元/㎡</b>
+          <span>2026-05-04 7800</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">卧室全朝南</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59103331/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/517473.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>名城星颂</h2>
+          <div class="price">7200-7500 元/㎡</div>
+          <div class="card-address">马头岗路名城星颂</div>
+          
+      <div class="trend trend-up">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,8.0 60.0,8.0 86.0,8.0 112.0,8.0 138.0,8.0 164.0,8.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="8.0" r="2.6" /><circle cx="60.0" cy="8.0" r="2.6" /><circle cx="86.0" cy="8.0" r="2.6" /><circle cx="112.0" cy="8.0" r="2.6" /><circle cx="138.0" cy="8.0" r="2.6" /><circle cx="164.0" cy="8.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 7350</span>
+          <b>+25 元/㎡</b>
+          <span>2026-05-04 7375</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">学校</span><span class="chip">购物中心</span><span class="chip">大户型</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59111593/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/525735.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826202036.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州区">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州区</span>
+          </div>
+          <h2>光大·锦绣山河</h2>
+          <div class="price">7300 元/㎡</div>
+          <div class="card-address">宋城三路</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 7300</span>
+          <b>持平</b>
+          <span>2026-05-04 7300</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2827012832.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州城东">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州城东</span>
+          </div>
+          <h2>上城时光</h2>
+          <div class="price">7500 元/㎡</div>
+          <div class="card-address">黄岗街道上城时光</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 7500</span>
+          <b>持平</b>
+          <span>2026-05-04 7500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>君安峰景湾</h2>
+          <div class="price">7500 元/㎡</div>
+          <div class="card-address">肇庆市端州区端州一路50号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 7500</span>
+          <b>持平</b>
+          <span>2026-05-04 7500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">学校</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59109548/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/523690.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="新东、端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">新东、端州</span>
+          </div>
+          <h2>世茂滨江壹号</h2>
+          <div class="price">7600-10000 元/㎡</div>
+          <div class="card-address">滨江二路</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 8800</span>
+          <b>-40 元/㎡</b>
+          <span>2026-05-04 8760</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">双阳台</span><span class="chip">主卧套房</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59063800/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/477942.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826200252.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>中源誉峰</h2>
+          <div class="price">7700 元/㎡</div>
+          <div class="card-address">星湖大道中源誉峰</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 7700</span>
+          <b>持平</b>
+          <span>2026-05-04 7700</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>奔成四季天悦</h2>
+          <div class="price">8000-12000 元/㎡</div>
+          <div class="card-address">东湖南路奔成四季天悦</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 10000</span>
+          <b>持平</b>
+          <span>2026-05-04 10000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州城东">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州城东</span>
+          </div>
+          <h2>喜利天澜</h2>
+          <div class="price">8500 元/㎡</div>
+          <div class="card-address">二塔路喜利天澜江南美誉</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 8500</span>
+          <b>持平</b>
+          <span>2026-05-04 8500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>华英城明月湾</h2>
+          <div class="price">9000-9800 元/㎡</div>
+          <div class="card-address">广东省肇庆市端州区信安三路8号</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 9800</span>
+          <b>-267 元/㎡</b>
+          <span>2026-05-04 9533</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">学校</span><span class="chip">购物中心</span><span class="chip">大户型</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59111591/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/525733.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>天鹅堡</h2>
+          <div class="price">9000 元/㎡</div>
+          <div class="card-address">翠岗路1号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 9000</span>
+          <b>持平</b>
+          <span>2026-05-04 9000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">双阳台</span><span class="chip">主卧套房</span><span class="chip">卧室全朝南</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59109578/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/523720.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="新东、端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">新东、端州</span>
+          </div>
+          <h2>城投星悦四季</h2>
+          <div class="price">9500-9800 元/㎡</div>
+          <div class="card-address">肇庆市端州区信安三路城投星悦四季</div>
+          
+      <div class="trend trend-up">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,8.0 60.0,8.0 86.0,8.0 112.0,8.0 138.0,8.0 164.0,8.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="8.0" r="2.6" /><circle cx="60.0" cy="8.0" r="2.6" /><circle cx="86.0" cy="8.0" r="2.6" /><circle cx="112.0" cy="8.0" r="2.6" /><circle cx="138.0" cy="8.0" r="2.6" /><circle cx="164.0" cy="8.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 9500</span>
+          <b>+100 元/㎡</b>
+          <span>2026-05-04 9600</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">双阳台</span><span class="chip">主卧套房</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59112626/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/526768.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州区">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州区</span>
+          </div>
+          <h2>星悦四季花园</h2>
+          <div class="price">9500 元/㎡</div>
+          <div class="card-address">彩霞路2号</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 9500</span>
+          <b>持平</b>
+          <span>2026-05-04 9500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826202146.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州区">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州区</span>
+          </div>
+          <h2>名城星畔</h2>
+          <div class="price">9700 元/㎡</div>
+          <div class="card-address">兴湖大道名城星畔</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 9700</span>
+          <b>持平</b>
+          <span>2026-05-04 9700</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826202038.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州区">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州区</span>
+          </div>
+          <h2>滨江嘉苑</h2>
+          <div class="price">9800 元/㎡</div>
+          <div class="card-address">二塔路滨江嘉苑</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 9800</span>
+          <b>持平</b>
+          <span>2026-05-04 9800</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>阳光城·檀府</h2>
+          <div class="price">9800-11500 元/㎡</div>
+          <div class="card-address">广东省肇庆市端州区蓝塘中路南侧阳光城...</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,23.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="23.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 11500</span>
+          <b>-567 元/㎡</b>
+          <span>2026-05-04 10933</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">南北通透</span><span class="chip">厨卫全明</span><span class="chip">装修交付</span></div>
+          <div class="sources"><a class="source" href="https://zq.fang.anjuke.com/loupan/471226.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826200210.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>鸿益幸福湖畔</h2>
+          <div class="price">10000 元/㎡</div>
+          <div class="card-address">星湖大道115区</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 10000</span>
+          <b>持平</b>
+          <span>2026-05-04 10000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">南北通透</span><span class="chip">厨卫全明</span><span class="chip">现房</span></div>
+          <div class="sources"><a class="source" href="https://zq.fang.anjuke.com/loupan/399864.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="新东">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">新东</span>
+          </div>
+          <h2>保利琅悦</h2>
+          <div class="price">11000-11500 元/㎡</div>
+          <div class="card-address">端州区109区东湖中路北侧</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 11500</span>
+          <b>-250 元/㎡</b>
+          <span>2026-05-04 11250</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span><a class="source" href="https://zhaoqing.newhouse.fang.com/loupan/2826202162.htm">Fang.com</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>星湖一方</h2>
+          <div class="price">11000-13800 元/㎡</div>
+          <div class="card-address">星湖大道星湖一方</div>
+          
+      <div class="trend trend-down">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,8.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="8.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 13800</span>
+          <b>-1400 元/㎡</b>
+          <span>2026-05-04 12400</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59052818/">58Aifang</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>保利琅悦花园</h2>
+          <div class="price">11500 元/㎡</div>
+          <div class="card-address">肇庆市端州区东湖中路北侧.保利琅悦</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 11500</span>
+          <b>持平</b>
+          <span>2026-05-04 11500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">双阳台</span><span class="chip">主卧套房</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59114740/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/528882.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>肇庆保利云禧</h2>
+          <div class="price">12500 元/㎡</div>
+          <div class="card-address">城东街道102区砚都大道与石东路交汇处...</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-22 到 2026-05-04">
+          <polyline points="8.0,28.0 34.0,28.0 60.0,28.0 86.0,28.0 112.0,28.0 138.0,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="34.0" cy="28.0" r="2.6" /><circle cx="60.0" cy="28.0" r="2.6" /><circle cx="86.0" cy="28.0" r="2.6" /><circle cx="112.0" cy="28.0" r="2.6" /><circle cx="138.0" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-22 12500</span>
+          <b>持平</b>
+          <span>2026-05-04 12500</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">双阳台</span><span class="chip">全景飘窗</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59098037/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/512179.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>保利云禧</h2>
+          <div class="price">15000 元/㎡</div>
+          <div class="card-address">石东路保利云禧</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 15000</span>
+          <b>持平</b>
+          <span>2026-05-04 15000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>海逸半岛</h2>
+          <div class="price">17000 元/㎡</div>
+          <div class="card-address">星湖大道信荣凯逸半岛</div>
+          
+      <div class="trend trend-flat">
+        <svg viewBox="0 0 172 36" role="img" aria-label="价格趋势 2026-04-26 到 2026-05-04">
+          <polyline points="8.0,28.0 39.2,28.0 70.4,28.0 101.6,28.0 132.8,28.0 164.0,28.0" />
+          <circle cx="8.0" cy="28.0" r="2.6" /><circle cx="39.2" cy="28.0" r="2.6" /><circle cx="70.4" cy="28.0" r="2.6" /><circle cx="101.6" cy="28.0" r="2.6" /><circle cx="132.8" cy="28.0" r="2.6" /><circle cx="164.0" cy="28.0" r="2.6" />
+        </svg>
+        <div class="trend-meta">
+          <span>2026-04-26 17000</span>
+          <b>持平</b>
+          <span>2026-05-04 17000</span>
+        </div>
+      </div>
+    
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>泰禾肇庆院子</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">星湖北将军山下北岭四路</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="chip">车位充足</span></div>
+          <div class="sources"><a class="source" href="https://zq.fang.anjuke.com/loupan/437168.html">Anjuke</a></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>鸿景悦园</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">祥福路7号</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-active" data-status="active" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">在售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>鸿景紫园</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">星湖北岭9号（中央党校背面）</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-pending" data-status="pending" data-district="端州城西">
+          
+          <div class="card-top">
+            <span class="status">待售</span>
+            <span class="district">端州城西</span>
+          </div>
+          <h2>南湖明珠花园</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">白沙路南湖明珠花园</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-pending" data-status="pending" data-district="新东、端州">
+          
+          <div class="card-top">
+            <span class="status">待售</span>
+            <span class="district">新东、端州</span>
+          </div>
+          <h2>城投星悦香江</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">肇庆市端州区黄岗街道端州区131区江滨一路西北侧地段</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="chip">大阳台</span><span class="chip">双阳台</span><span class="chip">主卧套房</span></div>
+          <div class="sources"><a class="source" href="https://mfang.58.com/zq/loupan/59119839/">58Aifang</a><a class="source" href="https://zq.fang.anjuke.com/loupan/533981.html">Anjuke</a><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-pending" data-status="pending" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">待售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>恒裕海湾</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">星湖大道9号</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+
+        <article class="card status-pending" data-status="pending" data-district="端州">
+          
+          <div class="card-top">
+            <span class="status">待售</span>
+            <span class="district">端州</span>
+          </div>
+          <h2>星弘誉景二期</h2>
+          <div class="price">价格待确认</div>
+          <div class="card-address">星湖大道星弘誉景</div>
+          <div class="trend-empty">暂无足够历史价格</div>
+          <div class="card-features"><span class="empty"></span></div>
+          <div class="sources"><span class="source muted-source">Beike 接口来源</span></div>
+        </article>
+    
+      </div>
+    </section>
+  </main>
+  <a class="back-top" href="#top" aria-label="回到最上面">↑</a>
+  <script>
+    if (window.lucide) { window.lucide.createIcons(); }
+    (function() {
+      var statusTab = null;
+      var tabs = document.querySelectorAll('.filter-tab');
+      var cards = document.querySelectorAll('.card[data-status]');
+      var countEl = document.querySelector('.visible-count');
+      function applyFilter() {
+        var shown = 0;
+        cards.forEach(function(c) {
+          var matchS = !statusTab || c.dataset.status === statusTab;
+          c.style.display = matchS ? '' : 'none';
+          if (matchS) shown++;
+        });
+        if (countEl) countEl.textContent = shown;
+      }
+      tabs.forEach(function(t) {
+        t.addEventListener('click', function() {
+          var f = t.dataset.filter;
+          tabs.forEach(function(x) { x.classList.remove('active'); });
+          if (f === 'all') {
+            statusTab = null;
+          } else {
+            statusTab = (statusTab === f) ? null : f;
+          }
+          (statusTab ? document.querySelector('[data-filter="' + statusTab + '"]') : document.querySelector('[data-filter="all"]')).classList.add('active');
+          applyFilter();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
