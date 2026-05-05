@@ -1,5 +1,55 @@
 [
   {
+    "item_id": "twitter:billtheinvestor:2051589925360054313",
+    "title": "The scariest thing isn't that skills become obsolete, but rather that when low-b",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "The scariest thing isn't that skills become obsolete, but rather that when low-barrier AI skills turn into the standard, companies might revert to an extreme demand for \"deep industry insight\" and \"complex decision-making ability.\"",
+    "summary_zh": "【AI总结】AI技能普及后，企业将极端需求深度行业洞察与复杂决策力。",
+    "url": "https://x.com/billtheinvestor/status/2051589925360054313",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2051545327518491128",
+    "title": "Everyone is arguing that 16GB of RAM can't run large models, but the facts prove",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Everyone is arguing that 16GB of RAM can't run large models, but the facts prove that what you're missing isn't RAM—it's an understanding of \"model routing.\"\n\nRecently, I came across a highly enlightening case: Someone successfully ran a 24/7 AI automation workflow using just a",
+    "summary_zh": "【AI总结】16GB内存也能运行大模型，关键不是内存大小而是模型路由。",
+    "url": "https://x.com/billtheinvestor/status/2051545327518491128",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2051539267508441530",
+    "title": "Someone tested the lip-sync workflow in Seedance 2.0... and it actually has the",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Someone tested the lip-sync workflow in Seedance 2.0... and it actually has the capability to go head-to-head with HeyGen and other digital human models. You just need to upload:\n– A reference image\n– A black-screen video with audio or an audio file\n– A prompt (including camera",
+    "summary_zh": "Someone tested the lip-sync workflow in Seedance 2.0... and it actually has the capability to go head-to-head with HeyGen and other digital human models. You just need to upload:\n– A reference imag...",
+    "url": "https://x.com/billtheinvestor/status/2051539267508441530",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:canghe:2050450173642551448",
+    "title": "He doesn't message me, and I've completely forgotten that he's gone to OpenAI. I",
+    "source_label": "⚡ @canghe",
+    "content_text": "He doesn't message me, and I've completely forgotten that he's gone to OpenAI. It feels like recently, Codex has started to integrate the essence of OpenClaw, looking forward to it.\n\nThe new /goal feature in codex slaps.",
+    "summary_zh": "【AI总结】Codex近期融入OpenClaw精髓，新/goal功能备受期待。",
+    "url": "https://x.com/canghe/status/2050450173642551448",
+    "author": "@canghe",
+    "tweet_date": "2026-05-02"
+  },
+  {
+    "item_id": "twitter:bindureddy:2050672397515477026",
+    "title": "Finally figured out how to run DeepSeek V4 Pro correctly",
+    "source_label": "🌈 @bindureddy（推荐）",
+    "content_text": "Finally figured out how to run DeepSeek V4 Pro correctly\n\nThe evals are mind blowing...\n\nYes, it is even better than Opus 4.7 Medium!! More coming...",
+    "summary_zh": "【AI总结】成功运行DeepSeek V4 Pro，评估显示其性能超越Opus 4.7 Medium。",
+    "url": "https://x.com/bindureddy/status/2050672397515477026",
+    "author": "@bindureddy",
+    "tweet_date": "2026-05-02"
+  },
+  {
     "item_id": "twitter:BTCdayu:2051122303757660185",
     "title": "Nowadays, many water purifier brands target people who are focused on health,",
     "source_label": "🤖 @BTCdayu",
