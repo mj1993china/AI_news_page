@@ -1,5 +1,55 @@
 [
   {
+    "item_id": "twitter:canghe:2050397753520570648",
+    "title": "US Military Uses AI Technology to Clear Mines in the Strait of Hormuz",
+    "source_label": "⚡ @canghe",
+    "content_text": "US Military Uses AI Technology to Clear Mines in the Strait of Hormuz",
+    "summary_zh": "【AI总结】美军在霍尔木兹海峡运用人工智能技术清除水雷。",
+    "url": "https://x.com/canghe/status/2050397753520570648",
+    "author": "@canghe",
+    "tweet_date": "2026-05-02"
+  },
+  {
+    "item_id": "twitter:fchollet:2049644995293163830",
+    "title": "AI automates tasks, not jobs, and when a task gets cheaper, demand for the job g",
+    "source_label": "🎯 @fchollet（推荐）",
+    "content_text": "AI automates tasks, not jobs, and when a task gets cheaper, demand for the job grows. \n\nAI cannot automate jobs end-to-end because it lacks autonomy and cannot operate without supervision. There is still zero job from 2022 that can be performed end-to-end by AI, not even\n\n\"A decade ago, AI was supposed to replace radiologists. Today, radiologists make more than $500,000 per year, and their employment continues to grow, see chart below. Reading scans is a task, not a job, and when the task gets cheaper, demand for the job grows.\"",
+    "summary_zh": "【AI总结】AI自动化任务而非工作，任务成本降低反促工作需求增长，如放射科医生年薪超50万美元。",
+    "url": "https://x.com/fchollet/status/2049644995293163830",
+    "author": "@fchollet",
+    "tweet_date": "2026-04-30"
+  },
+  {
+    "item_id": "twitter:elonmusk:2051336258081935400",
+    "title": "Try Grok",
+    "source_label": "🔮 @elonmusk（推荐）",
+    "content_text": "Try Grok\n\nGrok 4.3 just became the smartest AI in the world at law and money\n\nIt took #1 on TWO brutal private tests no other model could win on “Vals AI” benchmarks\n\n#1 CaseLaw (v2) - 79.31% accuracy\nPrivate Q&A benchmark over real Canadian court cases. Tests deep legal reasoning,",
+    "summary_zh": "【AI总结】马斯克称Grok 4.3以79.31%准确率在法律与金融两项基准测试中夺冠，成为最聪明AI。",
+    "url": "https://x.com/elonmusk/status/2051336258081935400",
+    "author": "@elonmusk",
+    "tweet_date": "2026-05-04"
+  },
+  {
+    "item_id": "twitter:swyx:2049569820728078533",
+    "title": "IMO DeepSeek v4 demonstrated utter confidence and competence by not benchmaxxing",
+    "source_label": "🔬 @swyx（推荐）",
+    "content_text": "IMO DeepSeek v4 demonstrated utter confidence and competence by not benchmaxxing, not focusing on some BS final run cost, not even spending inference-optimal compute.\n\njust showed up, demonstrated SOTA long context efficiency techniques (CSA, HCA, mHC, flash at 8% cost of pro,",
+    "summary_zh": "【AI总结】DeepSeek v4 以 pro 版本 8% 的成本，自信展示 SOTA 长上下文效率技术（CSA、HCA、mHC、flash）。",
+    "url": "https://x.com/swyx/status/2049569820728078533",
+    "author": "@swyx",
+    "tweet_date": "2026-04-29"
+  },
+  {
+    "item_id": "twitter:bindureddy:2049330512544808983",
+    "title": "We are continuing to move work loads to Kimi 2.6",
+    "source_label": "🌈 @bindureddy（推荐）",
+    "content_text": "We are continuing to move work loads to Kimi 2.6\n\n- on some use-case, it beats Opus 4.7 medium\n- it's better than GPT 5.5. on front-end \n- it's good at both tool calling and instruction following\n- and yeah, it's 5x cheaper \n\nVery much looking forward to Kimi 2.7",
+    "summary_zh": "【AI总结】@bindureddy 将工作负载迁移至 Kimi 2.6，其在部分用例超越 Opus 4.7，前端优于 GPT 5.5，且成本仅为 1/5，期待 2.7 版本。",
+    "url": "https://x.com/bindureddy/status/2049330512544808983",
+    "author": "@bindureddy",
+    "tweet_date": "2026-04-29"
+  },
+  {
     "item_id": "twitter:billtheinvestor:2051182543551246597",
     "title": "If you really want to make money, it's actually very simple. I've discovered a s",
     "source_label": "🔥 @billtheinvestor",
