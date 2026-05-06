@@ -1,5 +1,135 @@
 [
   {
+    "item_id": "twitter:BTCdayu:2051551089359827207",
+    "title": "In two days' time, $COHR's earnings report is about to be released.",
+    "source_label": "🤖 @BTCdayu",
+    "content_text": "In two days' time, $COHR's earnings report is about to be released.\n\nCurrently, its profit is 2.5 times that of LITE, with a market cap roughly the same as LITE's.\n\nIt has its own full-stack advantages, but is also slightly dragged down by legacy industrial factors—but",
+    "summary_zh": "【AI总结】$COHR两天后发布财报，利润是LITE的2.5倍且市值相当，具全栈优势但受旧工业因素拖累。",
+    "url": "https://x.com/BTCdayu/status/2051551089359827207",
+    "author": "@BTCdayu",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:BTCdayu:2051549906201141397",
+    "title": "Looking closely at these three lines of CRCL, I can't help but feel quite emotio",
+    "source_label": "🤖 @BTCdayu",
+    "content_text": "Looking closely at these three lines of CRCL, I can't help but feel quite emotional:\n\nDuring the downturn, every piece of news gets amplified, forming a negative feedback loop—once it drops, it can drop even further, all the way below the issue price.\n\nBut during the upswing,",
+    "summary_zh": "【AI总结】@BTCdayu 观察 CRCL",
+    "url": "https://x.com/BTCdayu/status/2051549906201141397",
+    "author": "@BTCdayu",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:op7418:2050250298892153045",
+    "title": "Andrew Ng's new course: AI prompting has changed significantly from 2023 to 2026",
+    "source_label": "🧠 @op7418",
+    "content_text": "Andrew Ng's new course: AI prompting has changed significantly from 2023 to 2026\n\nSo he's launched a new prompt engineering course\n\nHow we prompt AI is very different in 2026 than 2022 when ChatGPT came out.\n\nI'm teaching a new course, AI Prompting for Everyone, to help you become an AI power user — whatever your current skill level.\n\nIt covers skills that apply across ChatGPT, Gemini, Claude, and other AI",
+    "summary_zh": "【AI总结】吴恩达推出新课程《AI Prompting for Everyone》，针对2026年AI提示工程变革，适用于ChatGPT、Gemini、Claude等。",
+    "url": "https://x.com/op7418/status/2050250298892153045",
+    "author": "@op7418",
+    "tweet_date": "2026-05-01"
+  },
+  {
+    "item_id": "twitter:op7418:2050213540519440551",
+    "title": "Some friends in the gaming community always think that AI can't handle the numbe",
+    "source_label": "🧠 @op7418",
+    "content_text": "Some friends in the gaming community always think that AI can't handle the numbers, that good games aren't about that—they also need gameplay.\n\nSo when can I share it then? Can AI do everything? Have AI whip up a AAA game in one sentence?\n\nOtherwise, does that mean I can't have",
+    "summary_zh": "Some friends in the gaming community always think that AI can't handle the numbers, that good games aren't about that—they also need gameplay.\n\nSo when can I share it then? Can AI do everything? Ha...",
+    "url": "https://x.com/op7418/status/2050213540519440551",
+    "author": "@op7418",
+    "tweet_date": "2026-05-01"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2051771723843084696",
+    "title": "Theta EdgeCloud has just reduced the probability of AI Agents giving irrelevant",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Theta EdgeCloud has just reduced the probability of AI Agents giving irrelevant responses. Through the newly launched PageIndex feature, they have addressed one of the most core triggers for AI Agents producing incorrect answers.\n\nNow all Agents powered by Theta can directly",
+    "summary_zh": "【AI总结】Theta EdgeCloud推出PageIndex功能，有效降低AI代理产生不相关回答的概率。",
+    "url": "https://x.com/billtheinvestor/status/2051771723843084696",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2051771953934172171",
+    "title": "Benchmark data shows that retrieval accuracy improved by approximately 35% when",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Benchmark data shows that retrieval accuracy improved by approximately 35% when handling long-context retrieval, but we are currently still monitoring changes in Token throughput under large-scale concurrency.",
+    "summary_zh": "【AI总结】基准测试显示长上下文检索准确率提升约35%，但大规模并发下的Token吞吐量仍在监控中。",
+    "url": "https://x.com/billtheinvestor/status/2051771953934172171",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:canghe:2050506800232079577",
+    "title": "Now in Openclaw, you can directly use a ChatGPT subscription, but unfortunately,",
+    "source_label": "⚡ @canghe",
+    "content_text": "Now in Openclaw, you can directly use a ChatGPT subscription, but unfortunately, Codex is being used more now. Looking forward to integrating Openclaw's capabilities into Codex!\n\nyou can sign in to openclaw with your chatgpt account now and use your subscription there!\n\nhappy lobstering.",
+    "summary_zh": "【AI总结】Openclaw现已支持直接使用ChatGPT订阅登录，但Codex使用更频繁。",
+    "url": "https://x.com/canghe/status/2050506800232079577",
+    "author": "@canghe",
+    "tweet_date": "2026-05-02"
+  },
+  {
+    "item_id": "twitter:sama:2050654662349787518",
+    "title": "this is great",
+    "source_label": "🌟 @sama（推荐）",
+    "content_text": "this is great\n\nMy colleagues have been posting so many cool research results on the @OpenAI  alignment blog!  A few examples in \n\n\nhttps://\nalignment.openai.com",
+    "summary_zh": "【AI总结】Sam Altman 推荐同事在 OpenAI 对齐博客上发布的多项酷炫研究成果。",
+    "url": "https://x.com/sama/status/2050654662349787518",
+    "author": "@sama",
+    "tweet_date": "2026-05-02"
+  },
+  {
+    "item_id": "twitter:simonw:2049665014391570473",
+    "title": "I particularly appreciate how this rationale isn't based on the idea that LLM co",
+    "source_label": "💎 @simonw（推荐）",
+    "content_text": "I particularly appreciate how this rationale isn't based on the idea that LLM code is of poor quality compared to code written by hand - the quality of the code isn't the deciding factor at all here",
+    "summary_zh": "【AI总结】西蒙·威利森强调，拒绝LLM代码的理由并非因其质量差，而是代码质量根本不是决定因素。",
+    "url": "https://x.com/simonw/status/2049665014391570473",
+    "author": "@simonw",
+    "tweet_date": "2026-04-30"
+  },
+  {
+    "item_id": "twitter:swyx:2051329252344369626",
+    "title": "this one is doing v well btw if you want the popular vote filter on the firehose",
+    "source_label": "🔬 @swyx（推荐）",
+    "content_text": "this one is doing v well btw if you want the popular vote filter on the firehose of all the things\n\n\n@patrickdebois\n was one of the track keynotes i gave a \"blank check\" to based on his sincere support since our very earliest days + when in europe we must feature the DevOps guy. he\n\nContext may be the most under-engineered layer in AI coding today.\n\nIn this keynote, @patrickdebois, argues that if agents are driven by prompts, rules, and memory, then context deserves the same rigor we already give code.\n\n\nhttps://\nyoutube.com/watch?v=bSG9wU\nYaHWU\n…",
+    "summary_zh": "【AI总结】Patrick Debois主题演讲指出，AI编码中上下文是最被忽略的工程层，应像代码一样严格对待",
+    "url": "https://x.com/swyx/status/2051329252344369626",
+    "author": "@swyx",
+    "tweet_date": "2026-05-04"
+  },
+  {
+    "item_id": "twitter:AndrewYNg:2039051446084153834",
+    "title": "The anti-AI coalition continues to maneuver to find arguments to slow down AI pr",
+    "source_label": "🧪 @AndrewYNg（推荐）",
+    "content_text": "The anti-AI coalition continues to maneuver to find arguments to slow down AI progress. If someone has a sincere concern about a specific effect of AI, for instance that it may lead to human extinction, I respect their intellectual honesty, even if I deeply disagree with their",
+    "summary_zh": "【AI总结】反AI联盟仍在找理由拖慢AI进展，但Andrew Ng尊重真诚担忧者，即便他不认同。",
+    "url": "https://x.com/AndrewYNg/status/2039051446084153834",
+    "author": "@AndrewYNg",
+    "tweet_date": "2026-03-31"
+  },
+  {
+    "item_id": "twitter:bindureddy:2049720212866617357",
+    "title": "BREAKING NEWS - Announcing Video and Image Agentic Orchestration",
+    "source_label": "🌈 @bindureddy（推荐）",
+    "content_text": "BREAKING NEWS - Announcing Video and Image Agentic Orchestration \n\nGPT 5.5 and Opus 4.7 agents orchestrate the best video and audio models \n\nCombine Grok Imagine, Nano Banana Pro and SeeDance 2.0 to generate amazing videos",
+    "summary_zh": "【AI总结】GPT 5.5与Opus 4.7代理编排Grok Imagine、Nano Banana Pro等模型生成视频。",
+    "url": "https://x.com/bindureddy/status/2049720212866617357",
+    "author": "@bindureddy",
+    "tweet_date": "2026-04-30"
+  },
+  {
+    "item_id": "twitter:_philschmid:2049840126050644011",
+    "title": "I asked",
+    "source_label": "🦄 @_philschmid（推荐）",
+    "content_text": "I asked \n@GoogleDeepMind\n Gemini 3.1 Pro watch the launch video of \n@cursor_ai\n SDK and create a production script. Then tasked it to re-create the video 1:1 with \n@Remotion\n 0-shot.\n\nVideo Understanding capabilities.Original cursor video in answer thread.",
+    "summary_zh": "【AI总结】作者让Gemini 3.1 Pro观看Cursor AI SDK发布视频并0-shot用Remotion 1:1复现，展示视频理解能力。",
+    "url": "https://x.com/_philschmid/status/2049840126050644011",
+    "author": "@_philschmid",
+    "tweet_date": "2026-04-30"
+  },
+  {
     "item_id": "twitter:billtheinvestor:2051589925360054313",
     "title": "The scariest thing isn't that skills become obsolete, but rather that when low-b",
     "source_label": "🔥 @billtheinvestor",
