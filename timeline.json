@@ -1,5 +1,85 @@
 [
   {
+    "item_id": "twitter:op7418:2051927058021052903",
+    "title": "Just to clarify, these two dramas aren't AI-generated. I just wanted to let ever",
+    "source_label": "🧠 @op7418",
+    "content_text": "Just to clarify, these two dramas aren't AI-generated. I just wanted to let everyone use them as a reference for this level of quality—they're all live-action footage.",
+    "summary_zh": "【AI总结】@op7418澄清两部剧均为实拍非AI生成，供参考此质量水平。",
+    "url": "https://x.com/op7418/status/2051927058021052903",
+    "author": "@op7418",
+    "tweet_date": "2026-05-06"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2052038029729308920",
+    "title": "Claude Code reduces token usage by 3x through a single modification: 9.21 → 2.81",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Claude Code reduces token usage by 3x through a single modification: 9.21 → 2.81, 10.4M tokens → 3.7M, 10 errors → zero errors. One change solves everything: InsForge Skills + CLI = Claude Code's context engineering. Localized. Open-source. Extremely efficient. Repository",
+    "summary_zh": "【AI总结】Claude Code通过InsForge Skills+CLI实现token用量减少3倍（10.4M→3.7M）并消除所有错误。",
+    "url": "https://x.com/billtheinvestor/status/2052038029729308920",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-06"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2052025332421767273",
+    "title": "18-Year-Old Boy Uses AI YouTube Videos to Earn $10,000 a Month",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "18-Year-Old Boy Uses AI YouTube Videos to Earn $10,000 a Month",
+    "summary_zh": "【AI总结】18岁男孩通过AI制作YouTube视频月赚1万美元",
+    "url": "https://x.com/billtheinvestor/status/2052025332421767273",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-06"
+  },
+  {
+    "item_id": "twitter:fchollet:2050300365942493547",
+    "title": "RL is a bit of a double edged sword: in known territory performance increases, b",
+    "source_label": "🎯 @fchollet（推荐）",
+    "content_text": "RL is a bit of a double edged sword: in known territory performance increases, but in unknown territory the model tends to hallucinate that it is performing a completely different task it was trained on\n\nGPT-5.5 Scores .43% on ARC AGI 3!\n\n - GPT-5.5: 0.43%\n - Opus 4.7: 0.18%\n - GPT-5.4: 0.20%\n - Claude 4.6: 0.45%\n - Gemini 3.1: 0.4%\n\nThe reported failures for GPT 5.5 were:\n\n - True local effect, false world model\n - Wrong level of abstraction from training data\n - Solved the",
+    "summary_zh": "【AI总结】fchollet指出RL在未知领域易幻觉，GPT-5.5在ARC AGI 3仅得0.43%，失败源于错误世界模型和抽象层级不当。",
+    "url": "https://x.com/fchollet/status/2050300365942493547",
+    "author": "@fchollet",
+    "tweet_date": "2026-05-01"
+  },
+  {
+    "item_id": "twitter:simonw:2050628759393640707",
+    "title": "I added a new feature to my blog (built entirely on my phone with Claude code fo",
+    "source_label": "💎 @simonw（推荐）",
+    "content_text": "I added a new feature to my blog (built entirely on my phone with Claude code for web) that imports my iNaturalist photos and adds them to my site's overall timeline",
+    "summary_zh": "【AI总结】作者用手机上的Claude代码为博客添加导入iNaturalist照片至时间线的新功能。",
+    "url": "https://x.com/simonw/status/2050628759393640707",
+    "author": "@simonw",
+    "tweet_date": "2026-05-02"
+  },
+  {
+    "item_id": "twitter:elonmusk:2052135256866824293",
+    "title": "The GB300 is the best AI computer",
+    "source_label": "🔮 @elonmusk（推荐）",
+    "content_text": "The GB300 is the best AI computer\n\nTwo frontier labs. One accelerated computing platform. Congrats to @SpaceX and @AnthropicAI on the new compute partnership, powered by 220,000+ NVIDIA GPUs inside Colossus 1. The future of AI runs on NVIDIA. x.com/claudeai/statu…",
+    "summary_zh": "【AI总结】马斯克称GB300为最佳AI计算机，SpaceX与AnthropicAI合作，使用Colossus 1中22万+英伟达GPU。",
+    "url": "https://x.com/elonmusk/status/2052135256866824293",
+    "author": "@elonmusk",
+    "tweet_date": "2026-05-06"
+  },
+  {
+    "item_id": "twitter:bindureddy:2051790195423605236",
+    "title": "SubQ , a new type of AI model, says they are 50x faster and 20x cheaper than Opu",
+    "source_label": "🌈 @bindureddy（推荐）",
+    "content_text": "SubQ , a new type of AI model, says they are 50x faster and 20x cheaper than Opus 4.7 and GPT 5.5\n\nIn fact, they also say they perform INSANELY WELL on benchmarks and have a 12M context\n\nThis would be earth shattering, if true - Anthropic/OpenAI's valuation would go to zero",
+    "summary_zh": "【AI总结】SubQ新型AI模型声称比Opus 4.7和GPT 5.5快50倍、便宜20倍且基准测试表现极佳。",
+    "url": "https://x.com/bindureddy/status/2051790195423605236",
+    "author": "@bindureddy",
+    "tweet_date": "2026-05-05"
+  },
+  {
+    "item_id": "twitter:_philschmid:2051334910191837206",
+    "title": "Quality of life upgrade: Interactions API errors now tell you and your agent exa",
+    "source_label": "🦄 @_philschmid（推荐）",
+    "content_text": "Quality of life upgrade: Interactions API errors now tell you and your agent exactly what went wrong and how to fix it.\n\n- Errors name the exact field and quote the bad value\n- Invalid enums return the full list of supported values\n- Type mismatches show expected vs. actual",
+    "summary_zh": "【AI总结】Interactions API 错误信息现在明确指出问题字段、错误值及修复方法。",
+    "url": "https://x.com/_philschmid/status/2051334910191837206",
+    "author": "@_philschmid",
+    "tweet_date": "2026-05-04"
+  },
+  {
     "item_id": "twitter:bindureddy:2049641580043362429",
     "title": "The company that makes a good, fast, cheap agentic model will hit $10 T in marke",
     "source_label": "🌈 @bindureddy（推荐）",
