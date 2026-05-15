@@ -1,5 +1,125 @@
 [
   {
+    "item_id": "twitter:BTCdayu:2054896078504575293",
+    "title": "State banquet menu—everyone can follow this recipe next time when hosting friend",
+    "source_label": "🤖 @BTCdayu",
+    "content_text": "State banquet menu—everyone can follow this recipe next time when hosting friends—and then introduce it by saying it was prepared to the standard for entertaining the U.S. President",
+    "summary_zh": "【AI总结】国宴菜单可在家复刻，按宴请美国总统标准招待朋友。",
+    "url": "https://x.com/BTCdayu/status/2054896078504575293",
+    "author": "@BTCdayu",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:BTCdayu:2054738349102112865",
+    "title": "This video of He Xiaopeng has sparked some interest in me for XPeng Motors.",
+    "source_label": "🤖 @BTCdayu",
+    "content_text": "This video of He Xiaopeng has sparked some interest in me for XPeng Motors.\n\nI originally thought that aside from Tesla, no other cars were worth mentioning—gasoline cars, in my eyes, are no different from luxury horse-drawn carriages, even something like the Cullinan.\n\nBut I'm",
+    "summary_zh": "This video of He Xiaopeng has sparked some interest in me for XPeng Motors.\n\nI originally thought that aside from Tesla, no other cars were worth mentioning—gasoline cars, in my eyes, are no differ...",
+    "url": "https://x.com/BTCdayu/status/2054738349102112865",
+    "author": "@BTCdayu",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:BTCdayu:2054737399515951113",
+    "title": "Anthropic reaching $100 billion in annual revenue is highly certain, but the cur",
+    "source_label": "🤖 @BTCdayu",
+    "content_text": "Anthropic reaching $100 billion in annual revenue is highly certain, but the current bottleneck is no longer about who to charge or how to charge.\n\nInstead, it's being choked by infrastructure: compute power, electricity, storage, optical interconnects\n\nThe more I research AI,",
+    "summary_zh": "【AI总结】Anthropic年收入将达千亿美元，但当前瓶颈是算力、电力等基础设施。",
+    "url": "https://x.com/BTCdayu/status/2054737399515951113",
+    "author": "@BTCdayu",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:op7418:2055133915162218942",
+    "title": "Lex Fridman unexpectedly came to China, just carrying a backpack.",
+    "source_label": "🧠 @op7418",
+    "content_text": "Lex Fridman unexpectedly came to China, just carrying a backpack.\n\nHe'll also record podcasts with AI engineers in China, not sure which companies, but his output is still pretty intense.\n\nI'm traveling the world for a bit, starting with China but then hopping around the globe, anywhere. Open to any adventure. No plans, only a backpack. Hoping to meet & get to know humans from all walks of life. The pic is from a long hike on the Great Wall. For me, as a fan of",
+    "summary_zh": "【AI总结】Lex Fridman背包旅行突访中国，将与AI工程师录制播客且开启无计划全球漫游。",
+    "url": "https://x.com/op7418/status/2055133915162218942",
+    "author": "@op7418",
+    "tweet_date": "2026-05-15"
+  },
+  {
+    "item_id": "twitter:op7418:2055122578407387420",
+    "title": "Codex CLI Setup for ChatGPT Remote Control",
+    "source_label": "🧠 @op7418",
+    "content_text": "Codex CLI Setup for ChatGPT Remote Control\n\nTo enable it, modify ~/.codex/config.toml, add [features]remote-control = true, then run codex remote-control in the terminal, and you'll be able to see it on your phone—super handy .",
+    "summary_zh": "【AI总结】Codex CLI 通过配置启用 remote-control 后，终端运行命令即可在手机上远程控制 ChatGPT。",
+    "url": "https://x.com/op7418/status/2055122578407387420",
+    "author": "@op7418",
+    "tweet_date": "2026-05-15"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2055031519090287088",
+    "title": "From Prompting to Assigning: The Paradigm of Programming Agents Is Undergoing a",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "From Prompting to Assigning: The Paradigm of Programming Agents Is Undergoing a Fundamental Shift.\n\nThe traditional Prompt is a \"driving\" mode: you issue instructions, observe responses, judge right or wrong, and then drive the next step. You must be fully involved in steering",
+    "summary_zh": "【AI总结】编程代理正从“提示驱动”模式转向“分配”模式，人需全程参与判断与操作。",
+    "url": "https://x.com/billtheinvestor/status/2055031519090287088",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:billtheinvestor:2055012747507855625",
+    "title": "Let Claude map your entire application's architecture to an HTML page and a JSON",
+    "source_label": "🔥 @billtheinvestor",
+    "content_text": "Let Claude map your entire application's architecture to an HTML page and a JSON file. The HTML is for your use, while the JSON is for the next agent responsible for new features to use. Now, your codebase is able to explain itself.",
+    "summary_zh": "【AI总结】Claude可将应用架构映射为HTML和JSON，使代码库具备自我解释能力。",
+    "url": "https://x.com/billtheinvestor/status/2055012747507855625",
+    "author": "@billtheinvestor",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:canghe:2054478576867807672",
+    "title": "awesome-gpt-image has already reached 5.3k stars, with the website currently get",
+    "source_label": "⚡ @canghe",
+    "content_text": "awesome-gpt-image has already reached 5.3k stars, with the website currently getting 610 daily PVs and 187 registered users.\n\nI've added some new features to the website, so everyone can go check it out and have some fun.\n\nAdded a new Agent Skill to awesome-gpt-image-2: gpt-image-2-style-library.\n\nIt will automatically match suitable categories, styles, scenes, and templates for you from over 400 GPT-Image2 cases and 20+ sets of industrial-grade prompt templates in the project, then output a GPT x.com/canghe/status/…",
+    "summary_zh": "【AI总结】awesome-gpt-image项目获5.3k星，新增风格库功能，可匹配400+案例和20+套模板。",
+    "url": "https://x.com/canghe/status/2054478576867807672",
+    "author": "@canghe",
+    "tweet_date": "2026-05-13"
+  },
+  {
+    "item_id": "twitter:canghe:2054487227288408387",
+    "title": "Website address:",
+    "source_label": "⚡ @canghe",
+    "content_text": "Website address: \nhttps://\ngpt-image2.canghe.ai\n\nOpen source address:",
+    "summary_zh": "【AI总结】GPT-image2 是一款图像生成工具，提供在线体验与开源代码。",
+    "url": "https://x.com/canghe/status/2054487227288408387",
+    "author": "@canghe",
+    "tweet_date": "2026-05-13"
+  },
+  {
+    "item_id": "twitter:swyx:2055071896920879236",
+    "title": "being vulnerable - by far one of the most important applied ai fields is in AI x",
+    "source_label": "🔬 @swyx（推荐）",
+    "content_text": "being vulnerable - by far one of the most important applied ai fields is in AI x Healthcare, but nobody on my team knows how to cover it!\n\nvery fortunate to have \n@jacobeffron\n on the pod for this one - I took a healthcare economics class once many moons ago, but not only is he on\n\nAbridge: 100M+ medical conversations, real-time prior auth, and the clinical intelligence layer \nhttps://\nlatent.space/p/abridge\n\n@AbridgeHQ is building the clinical intelligence layer for healthcare. In this episode, Janie Lee and @c_asawa explain why ambient documentation was only the",
+    "summary_zh": "【AI总结】Abridge构建临床智能层：已分析超1亿次医疗对话，实现实时预授权，环境记录仅是起点。",
+    "url": "https://x.com/swyx/status/2055071896920879236",
+    "author": "@swyx",
+    "tweet_date": "2026-05-14"
+  },
+  {
+    "item_id": "twitter:bindureddy:2052490332043174392",
+    "title": "Gemini 3.1 Flash Lite Preview is now Gemini 3.1 Flash Lite....",
+    "source_label": "🌈 @bindureddy（推荐）",
+    "content_text": "Gemini 3.1 Flash Lite Preview is now Gemini 3.1 Flash Lite.... \n\nNot the earth shattering new release we are all expecting\n\nI think that is still coming  - next week",
+    "summary_zh": "【AI总结】Gemini 3.1 Flash Lite预览版上线，但非重大更新，重磅消息或下周到来。",
+    "url": "https://x.com/bindureddy/status/2052490332043174392",
+    "author": "@bindureddy",
+    "tweet_date": "2026-05-07"
+  },
+  {
+    "item_id": "twitter:_philschmid:2052781345831879145",
+    "title": "Yesterday Fitbit Air launched, but did you know it comes with a new",
+    "source_label": "🦄 @_philschmid（推荐）",
+    "content_text": "Yesterday Fitbit Air launched, but did you know it comes with a new \n@googlehealth\n API? You can build AI agents, MCP servers, or CLIs on top of your sleep and heat data.\n\n- 31 different data points from exercise to sleep, heart rate, or SpO2.\n- Webhooks push real-time",
+    "summary_zh": "【AI总结】Fitbit Air发布并推出Google Health API，提供31种健康数据点，支持构建AI代理和实时Webhook推送。",
+    "url": "https://x.com/_philschmid/status/2052781345831879145",
+    "author": "@_philschmid",
+    "tweet_date": "2026-05-08"
+  },
+  {
     "item_id": "twitter:op7418:2054433146532479266",
     "title": "Skills has already updated this layout with the map and the map component.",
     "source_label": "🧠 @op7418",
@@ -1878,125 +1998,5 @@
     "url": "https://x.com/billtheinvestor/status/2049645523548926179",
     "author": "@billtheinvestor",
     "tweet_date": "2026-04-30"
-  },
-  {
-    "item_id": "twitter:karpathy:2039805659525644595",
-    "title": "🐦 @karpathy：LLM Knowledge Bases",
-    "source_label": "🐦 @karpathy",
-    "content_text": "LLM Knowledge Bases\n\nSomething I'm finding very useful recently: using LLMs to build personal knowledge bases for various topics of research interest. In this way, a large fraction of my recent token throughput is going less into manipulating code, and more into manipulating",
-    "summary_zh": "【AI总结】@karpathy 发现用 LLM 构建个人研究知识库很有用，token 消耗从代码转向知识操作。",
-    "url": "https://x.com/karpathy/status/2039805659525644595",
-    "author": "@karpathy",
-    "tweet_date": "2026-04-02"
-  },
-  {
-    "item_id": "twitter:karpathy:2038849654423798197",
-    "title": "🐦 @karpathy：New supply chain attack this time for npm axios, the most popular HTTP client li",
-    "source_label": "🐦 @karpathy",
-    "content_text": "New supply chain attack this time for npm axios, the most popular HTTP client library with 300M weekly downloads.\n\nScanning my system I found a use imported from googleworkspace/cli from a few days ago when I was experimenting with gmail/gcal cli. The installed version (luckily)\n\nCRITICAL: Active supply chain attack on axios -- one of npm's most depended-on packages.\n\nThe latest axios@1.14.1 now pulls in plain-crypto-js@4.2.1, a package that did not exist before today. This is a live compromise.\n\nThis is textbook supply chain installer malware. axios",
-    "summary_zh": "【AI总结】npm axios遭供应链攻击，最新版1.14.1引入恶意包plain-crypto-js@4.2.1。",
-    "url": "https://x.com/karpathy/status/2038849654423798197",
-    "author": "@karpathy",
-    "tweet_date": "2026-03-31"
-  },
-  {
-    "item_id": "twitter:karpathy:2037921699824607591",
-    "title": "🐦 @karpathy：- Drafted a blog post",
-    "source_label": "🐦 @karpathy",
-    "content_text": "- Drafted a blog post\n- Used an LLM to meticulously improve the argument over 4 hours.\n- Wow, feeling great, it’s so convincing!\n- Fun idea let’s ask it to argue the opposite. \n- LLM demolishes the entire argument and convinces me that the opposite is in fact true.\n- lol\n\nThe",
-    "summary_zh": "【AI总结】@karpathy 用LLM花了4小时完善论点，再让LLM反对时，却被彻底说服了。",
-    "url": "https://x.com/karpathy/status/2037921699824607591",
-    "author": "@karpathy",
-    "tweet_date": "2026-03-28"
-  },
-  {
-    "item_id": "twitter:Khazix0918:2047289310735642718",
-    "title": "🐦 @Khazix0918：Hahahaha, first livestream after the big event, finally got the chance to wear t",
-    "source_label": "🐦 @Khazix0918",
-    "content_text": "Hahahaha, first livestream after the big event, finally got the chance to wear the T-shirt signed by everyone at the last AI FUT大会!!\nA thousand words and ten thousand phrases, still, thanks to all you dear viewers and reader friends for your constant companionship and support!",
-    "summary_zh": "Hahahaha, first livestream after the big event, finally got the chance to wear the T-shirt signed by everyone at the last AI FUT大会!!\nA thousand words and ten thousand phrases, still, thanks to all ...",
-    "url": "https://x.com/Khazix0918/status/2047289310735642718",
-    "author": "@Khazix0918",
-    "tweet_date": "2026-04-23"
-  },
-  {
-    "item_id": "twitter:Khazix0918:2046813385292128293",
-    "title": "🐦 @Khazix0918：This morning, struck by something in the group chat, I realized that the credibi",
-    "source_label": "🐦 @Khazix0918",
-    "content_text": "This morning, struck by something in the group chat, I realized that the credibility of images has collapsed—it's no longer true that \"a picture is worth a thousand words\" or \"seeing is believing.\"\n\nTrust between people has collapsed too.",
-    "summary_zh": "【AI总结】图像可信度崩塌，“眼见为实”失效，人际信任亦随之瓦解。",
-    "url": "https://x.com/Khazix0918/status/2046813385292128293",
-    "author": "@Khazix0918",
-    "tweet_date": "2026-04-22"
-  },
-  {
-    "item_id": "twitter:canghe:2049488988948611348",
-    "title": "🐦 @canghe：DeepSeek can finally understand images now.",
-    "source_label": "🐦 @canghe",
-    "content_text": "DeepSeek can finally understand images now.\n\nThis view speed is a bit fast, huh—basically an instant burst.",
-    "summary_zh": "【AI总结】DeepSeek现已支持理解图片，查看速度极快，几乎瞬间输出。",
-    "url": "https://x.com/canghe/status/2049488988948611348",
-    "author": "@canghe",
-    "tweet_date": "2026-04-29"
-  },
-  {
-    "item_id": "twitter:canghe:2049333910056870086",
-    "title": "🐦 @canghe：Xiaomi's trillion-token creator incentive program just got approved super fast—e",
-    "source_label": "🐦 @canghe",
-    "content_text": "Xiaomi's trillion-token creator incentive program just got approved super fast—everyone, rush in now!!\n\nXiaomi has just released two open-source models: MiMo-V2.5-Pro (Coding Agent, totaling 1T) and MiMo-V2.5 (multimodal Agent, totaling 310B).  \nOh,\n\nand here's something totally badass : they've also provided developers and creators with a 100T Token free quota  x.com/_luofuli/statu…",
-    "summary_zh": "【AI总结】小米万亿token创作者激励计划快速获批，开源MiMo-V2.5系列模型并赠送100T免费配额。",
-    "url": "https://x.com/canghe/status/2049333910056870086",
-    "author": "@canghe",
-    "tweet_date": "2026-04-29"
-  },
-  {
-    "item_id": "twitter:canghe:2049308266581377368",
-    "title": "🐦 @canghe：Just added 6 new GPT Image 2 cases to awesome-gpt-image-2.",
-    "source_label": "🐦 @canghe",
-    "content_text": "Just added 6 new GPT Image 2 cases to awesome-gpt-image-2.\n\nThis time, my favorite is \n@Goodmanprotocol\n's \"Ink Double Exposure Character Poster\": silhouette of the figure at the top, narrative collage in the middle, and full-body subject below strung into a visual flow\n\nPrompt as Code | GPT-Image2 Industrial-Grade Prompt Engine and Template Library Open-Source Project Has Already Gained 1.7K Stars in Just Over 2 Days!\n\nAnd it's still being updated daily—definitely worth bookmarking!\n\nOpen-source link: \nhttps://\ngithub.com/freestylefly/a\nwesome-gpt-image-2\n…",
-    "summary_zh": "【AI总结】canghe在awesome-gpt-image-2库新增6个GPT影像案例，重点推荐Goodmanprotocol的水墨双重曝光海报，项目2天获1.7K星。",
-    "url": "https://x.com/canghe/status/2049308266581377368",
-    "author": "@canghe",
-    "tweet_date": "2026-04-29"
-  },
-  {
-    "item_id": "twitter:op7418:2048245950813282481",
-    "title": "🐦 @op7418：Master Tsang's PPT Skills now have animations!",
-    "source_label": "🐦 @op7418",
-    "content_text": "Master Tsang's PPT Skills now have animations!\n\nEach layout is paired with corresponding animations, all designed to complement the presentation, not just for showy effects.\n\nLocal animation files let you demo normally even offline.",
-    "summary_zh": "【AI总结】Master Tsang的PPT技巧新增动画功能，支持离线演示，每套布局配有贴合演讲的动画效果。",
-    "url": "https://x.com/op7418/status/2048245950813282481",
-    "author": "@op7418",
-    "tweet_date": "2026-04-26"
-  },
-  {
-    "item_id": "twitter:op7418:2048599545618243802",
-    "title": "🐦 @op7418：Recently, I'm refactoring CodePilot, making the things AI can do simpler, and th",
-    "source_label": "🐦 @op7418",
-    "content_text": "Recently, I'm refactoring CodePilot, making the things AI can do simpler, and the things AI can't do more detailed.",
-    "summary_zh": "【AI总结】@op7418重构CodePilot，让AI能做的事更简单、不能做的事更细致。",
-    "url": "https://x.com/op7418/status/2048599545618243802",
-    "author": "@op7418",
-    "tweet_date": "2026-04-27"
-  },
-  {
-    "item_id": "twitter:op7418:2048599141056758024",
-    "title": "🐦 @op7418：It seems really popular. Lately, I've seen that in the offline PPTs everyone is",
-    "source_label": "🐦 @op7418",
-    "content_text": "It seems really popular. Lately, I've seen that in the offline PPTs everyone is sharing, many of them are using this template of mine.",
-    "summary_zh": "【AI总结】@op7418 发现自己的PPT模板在大家分享的线下演示中被广泛使用。",
-    "url": "https://x.com/op7418/status/2048599141056758024",
-    "author": "@op7418",
-    "tweet_date": "2026-04-27"
-  },
-  {
-    "item_id": "twitter:op7418:2047658776527008208",
-    "title": "🐦 @op7418：Haha, thanks for the recommendation",
-    "source_label": "🐦 @op7418",
-    "content_text": "Haha, thanks for the recommendation",
-    "summary_zh": "哈哈，谢谢推荐\n\n核心内容：作者简洁地回应他人的推荐意见表示感谢。",
-    "url": "https://x.com/op7418/status/2047658776527008208",
-    "author": "@op7418",
-    "tweet_date": "2026-04-24"
   }
 ]
