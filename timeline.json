@@ -1,5 +1,15 @@
 [
   {
+    "item_id": "twitter:op7418:2055135882290901063",
+    "title": "You can also directly use control claude code or other software within ChatGPT.",
+    "source_label": "🧠 @op7418",
+    "content_text": "You can also directly use control claude code or other software within ChatGPT.\n\nJust have codex call computer use control and that's it.\n\nThis way, if you're doing collaborative development between codex and cloud code, you can control everything within ChatGPT.\n\nIf you've\n\nCodex finally supports remote control of ChatGPT on mobile!\n\nIt can automatically sync all conversations from your bound Codex device, and you can directly send commands, approve permissions, and monitor progress.\n\nI'll write a quick setup tutorial:\n\n1. Click on \"Set up Codex",
+    "summary_zh": "【AI总结】Codex 终于支持远程控制 ChatGPT 移动端，可自动同步对话、发送命令和监控进度。",
+    "url": "https://x.com/op7418/status/2055135882290901063",
+    "author": "@op7418",
+    "tweet_date": "2026-05-15"
+  },
+  {
     "item_id": "twitter:billtheinvestor:2055036496202338619",
     "title": "After tens of billions of failed password attempts, Claude successfully recovere",
     "source_label": "🔥 @billtheinvestor",
@@ -1988,15 +1998,5 @@
     "url": "https://x.com/op7418/status/2049172814213558784",
     "author": "@op7418",
     "tweet_date": "2026-04-28"
-  },
-  {
-    "item_id": "twitter:billtheinvestor:2049671572278137216",
-    "title": "🐦 @billtheinvestor：Everyone is talking about Codex and Claude Code... These AI Agent platforms can",
-    "source_label": "🐦 @billtheinvestor",
-    "content_text": "Everyone is talking about Codex and Claude Code... These AI Agent platforms can help you complete any task that requires using a computer... But so, what tools can be used in conjunction with Codex? Here are my top 7 picks: 00:00 Introduction\n01:18 Tool 1 - Wispr Flow\n04:01 Tool",
-    "summary_zh": "【AI总结】推文介绍可与Codex及Claude Code搭配使用的7款工具。",
-    "url": "https://x.com/billtheinvestor/status/2049671572278137216",
-    "author": "@billtheinvestor",
-    "tweet_date": "2026-04-30"
   }
 ]
