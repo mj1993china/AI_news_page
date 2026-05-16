@@ -17,10 +17,12 @@
     .card .num { font-size: 26px; font-weight: 700; }
     .card .hint { font-size: 13px; color: #64748b; margin-top: 4px; }
 
-    .listing-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; }
+    .listing-card { position: relative; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; }
     .listing-card[open] { border-color: #0f766e; }
+    .listing-card.is-new { border-color: #86efac; }
+    .listing-card.is-changed { border-color: #fdba74; }
     .listing-card summary {
-      display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px; padding: 12px 70px 12px 16px;
       cursor: pointer; user-select: none; list-style: none;
     }
     .listing-card summary::-webkit-details-marker { display: none; }
@@ -40,6 +42,14 @@
     .source-action { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 4px 8px; border-radius: 6px; border: 1px solid #99f6e4; background: #ecfdf5; color: #0f766e; font-size: 12px; text-decoration: none; }
     .source-action:hover { background: #ccfbf1; }
     .source-action.disabled { border-color: #e5e7eb; background: #f8fafc; color: #94a3b8; }
+    .change-badge {
+      position: absolute; top: 8px; right: 10px; z-index: 2;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 42px; padding: 3px 8px; border-radius: 999px;
+      font-size: 12px; font-weight: 800; line-height: 1.2; border: 1px solid transparent;
+    }
+    .badge-new { background: #dcfce7; border-color: #86efac; color: #15803d; }
+    .badge-changed { background: #ffedd5; border-color: #fdba74; color: #c2410c; }
 
     .detail { padding: 0 16px 16px 44px; border-top: 1px solid #e5e7eb; }
     .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
@@ -93,7 +103,7 @@
 <body>
   <header>
     <h1>端州楼盘评分看板</h1>
-    <div class="meta">生成时间：2026-05-16T08:11:26.887Z · 候选数量：106（46 新房 + 60 二手房）</div>
+    <div class="meta">生成时间：2026-05-16T12:07:49.116Z · 候选数量：106（46 新房 + 60 二手房）</div>
   </header>
   <main>
     <section class="cards">
@@ -112,6 +122,16 @@
         <div>80万左右3-4房优先对象</div>
         <div class="hint">同时命中"接近80万预算"和"3-4房"的候选数量</div>
       </div>
+      <div class="card">
+        <div class="num">0</div>
+        <div>新增</div>
+        <div class="hint">相比上一版评分数据首次出现的楼盘或房源数量</div>
+      </div>
+      <div class="card">
+        <div class="num">0</div>
+        <div>变更</div>
+        <div class="hint">相比上一版关键价格、户型、面积、标签或评分发生变化的数量</div>
+      </div>
     </section>
 
     <p class="meta" style="margin-top:20px">本看板是筛选雷达，不是购买建议；分数用于排序和发现值得复核的对象。</p>
@@ -120,6 +140,7 @@
     <p class="meta" style="margin-bottom:8px">点击每行展开查看完整评分详情；名称可点击跳转原始房源页面。</p>
     
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#1</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mjsylsblfsg/" target="_blank" rel="noopener noreferrer">敏捷水映澜山</a></span>
@@ -222,6 +243,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#2</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_smbjyhblgim/" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -324,6 +346,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#3</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_csyjbnidp/" target="_blank" rel="noopener noreferrer">城市雅居</a></span>
@@ -426,6 +449,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#4</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jafjwbnies/" target="_blank" rel="noopener noreferrer">君安峰景四季</a></span>
@@ -528,6 +552,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#5</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mjxcdhblkgn/" target="_blank" rel="noopener noreferrer">敏捷西城都荟</a></span>
@@ -630,6 +655,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#6</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_scsgbocbc/" target="_blank" rel="noopener noreferrer">上城时光</a></span>
@@ -732,6 +758,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#7</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_zysybnidq/" target="_blank" rel="noopener noreferrer">正域尚苑</a></span>
@@ -834,6 +861,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#8</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_dzmmbnifg/" target="_blank" rel="noopener noreferrer">端州名门</a></span>
@@ -936,6 +964,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#9</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_gdjsdjbnblu/" target="_blank" rel="noopener noreferrer">光大江山帝景</a></span>
@@ -1038,6 +1067,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#10</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hjmybnife/" target="_blank" rel="noopener noreferrer">鸿景明园</a></span>
@@ -1140,6 +1170,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#11</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mcxsbnieu/" target="_blank" rel="noopener noreferrer">名城星颂</a></span>
@@ -1242,6 +1273,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#12</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -1344,6 +1376,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#13</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -1446,6 +1479,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#14</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_tfylxbnifm/" target="_blank" rel="noopener noreferrer">天峰誉珑轩</a></span>
@@ -1548,6 +1582,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#15</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_yphfbnifl/" target="_blank" rel="noopener noreferrer">壹品华府</a></span>
@@ -1650,6 +1685,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#16</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_zyyfbnicc/" target="_blank" rel="noopener noreferrer">中源誉峰</a></span>
@@ -1752,6 +1788,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#17</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_ctxysjbnokj/" target="_blank" rel="noopener noreferrer">城投星悦四季</a></span>
@@ -1854,6 +1891,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#18</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -1956,6 +1994,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#19</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mcxpbniet/" target="_blank" rel="noopener noreferrer">名城星畔</a></span>
@@ -2058,6 +2097,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#20</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_xltljnmybnaxy/" target="_blank" rel="noopener noreferrer">喜利天澜</a></span>
@@ -2160,6 +2200,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#21</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -2262,6 +2303,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#22</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
@@ -2364,6 +2406,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#23</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jxshyqbnbmo/" target="_blank" rel="noopener noreferrer">光大锦绣山河</a></span>
@@ -2466,6 +2509,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#24</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hwhcbnwiw/" target="_blank" rel="noopener noreferrer">海湾花城</a></span>
@@ -2568,6 +2612,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#25</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hyhybnihc/" target="_blank" rel="noopener noreferrer">恒裕和园</a></span>
@@ -2670,6 +2715,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#26</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hyyxbniec/" target="_blank" rel="noopener noreferrer">恒裕雅轩</a></span>
@@ -2772,6 +2818,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#27</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hycmywbnier/" target="_blank" rel="noopener noreferrer">华英城明月湾</a></span>
@@ -2874,6 +2921,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#28</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jhmdbniff/" target="_blank" rel="noopener noreferrer">嘉湖美都</a></span>
@@ -2976,6 +3024,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#29</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_tebbnieh/" target="_blank" rel="noopener noreferrer">天鹅堡</a></span>
@@ -3078,6 +3127,7 @@
     </div>
   </details>
   <details class="listing-card">
+    
     <summary>
       <span class="rank">#30</span>
       <span class="cname"><a href="https://m.ke.com/zq/loupan/p_xybntdf/" target="_blank" rel="noopener noreferrer">囍园</a></span>
