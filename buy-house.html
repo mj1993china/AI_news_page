@@ -21,6 +21,7 @@
     .listing-card[open] { border-color: #0f766e; }
     .listing-card.is-new { border-color: #86efac; }
     .listing-card.is-changed { border-color: #fdba74; }
+    .listing-card.is-delisted { border-color: #cbd5e1; background: #f8fafc; }
     .listing-card summary {
       display: flex; align-items: center; gap: 12px; padding: 12px 70px 12px 16px;
       cursor: pointer; user-select: none; list-style: none;
@@ -50,6 +51,7 @@
     }
     .badge-new { background: #dcfce7; border-color: #86efac; color: #15803d; }
     .badge-changed { background: #ffedd5; border-color: #fdba74; color: #c2410c; }
+    .badge-delisted { background: #f1f5f9; border-color: #cbd5e1; color: #475569; }
 
     .detail { padding: 0 16px 16px 44px; border-top: 1px solid #e5e7eb; }
     .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
@@ -103,7 +105,7 @@
 <body>
   <header>
     <h1>端州楼盘评分看板</h1>
-    <div class="meta">生成时间：2026-05-16T12:07:49.116Z · 候选数量：106（46 新房 + 60 二手房）</div>
+    <div class="meta">生成时间：2026-05-16T12:43:13.181Z · 候选数量：106（46 新房 + 60 二手房）</div>
   </header>
   <main>
     <section class="cards">
@@ -131,6 +133,11 @@
         <div class="num">0</div>
         <div>变更</div>
         <div class="hint">相比上一版关键价格、户型、面积、标签或评分发生变化的数量</div>
+      </div>
+      <div class="card">
+        <div class="num">0</div>
+        <div>疑似下架</div>
+        <div class="hint">历史出现过，但本次全量抓取未再抓到的楼盘或房源数量</div>
       </div>
     </section>
 
@@ -3229,6 +3236,7 @@
       </div>
     </div>
   </details>
+    
   </main>
 </body>
 </html>
