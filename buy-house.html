@@ -68,6 +68,20 @@
     .score-chip-risk { background: #fff7f7; border-color: #fecaca; }
     .score-chip-risk .score-icon { background: #ef4444; }
     .score-chip-risk .score-value { color: #dc2626; }
+    .factor-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .factor-tag {
+      display: inline-flex; align-items: center; min-height: 26px; padding: 4px 9px;
+      border-radius: 6px; border: 1px solid transparent; font-size: 12px; font-weight: 700;
+      line-height: 1.2; white-space: nowrap;
+    }
+    .factor-family { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
+    .factor-price { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+    .factor-quality { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .factor-amenity { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
+    .factor-prospect { background: #eef2ff; border-color: #c7d2fe; color: #4338ca; }
+    .factor-location { background: #f8fafc; border-color: #cbd5e1; color: #334155; }
+    .factor-confidence { background: #f7fee7; border-color: #d9f99d; color: #4d7c0f; }
+    .factor-risk { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
 
     @media (max-width: 800px) {
       main { padding: 12px 8px; }
@@ -79,7 +93,7 @@
 <body>
   <header>
     <h1>端州楼盘评分看板</h1>
-    <div class="meta">生成时间：2026-05-16T08:03:48.731Z · 候选数量：106（46 新房 + 60 二手房）</div>
+    <div class="meta">生成时间：2026-05-16T08:11:26.887Z · 候选数量：106（46 新房 + 60 二手房）</div>
   </header>
   <main>
     <section class="cards">
@@ -202,8 +216,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频6、家庭5、城市3</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 53-81.5万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-amenity">配套 +10</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -304,8 +318,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>新东片区作为后续规划和配套观察对象</li><li>价格偏离当前核心预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4/5房</span><span class="factor-tag factor-price">价格 86-260万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +15</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -406,8 +420,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 75万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -508,8 +522,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 63-86.5万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -610,8 +624,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 80万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -712,8 +726,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 69-89万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -814,8 +828,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 70-98万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -916,8 +930,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 62万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1018,8 +1032,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 60-68.5万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1120,8 +1134,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4/5房</span><span class="factor-tag factor-price">价格 95万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1222,8 +1236,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 2/3/4房</span><span class="factor-tag factor-price">价格 50-88万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1324,8 +1338,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 73万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1426,8 +1440,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 74万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1528,8 +1542,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 65-68万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1630,8 +1644,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 60万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1732,8 +1746,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 67万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1834,8 +1848,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>新东片区作为后续规划和配套观察对象</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 2/3/4房</span><span class="factor-tag factor-price">价格 100万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +15</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -1936,8 +1950,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 69.8万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2038,8 +2052,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 100万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2140,8 +2154,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 2/3/4房</span><span class="factor-tag factor-price">价格 82-114.5万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2242,8 +2256,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价仍在可参考范围</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 4房</span><span class="factor-tag factor-price">价格 98.8万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2344,8 +2358,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价仍在可参考范围</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 4房</span><span class="factor-tag factor-price">价格 99万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-amenity">配套 +14</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2446,8 +2460,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 4房</span><span class="factor-tag factor-price">价格 110万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2548,8 +2562,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 1/2/3房</span><span class="factor-tag factor-price">价格 30万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2650,8 +2664,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 1/2/3房</span><span class="factor-tag factor-price">价格 19-48万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2752,8 +2766,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 1/2/3房</span><span class="factor-tag factor-price">价格 21-42.5万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2854,8 +2868,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3/4房</span><span class="factor-tag factor-price">价格 97.5-125万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -2956,8 +2970,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 2/3/4房</span><span class="factor-tag factor-price">价格 45-72万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -3058,8 +3072,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 1/2/3/4房</span><span class="factor-tag factor-price">价格 50万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
@@ -3160,8 +3174,8 @@
     </div></div>
       </div>
       <div class="detail-box" style="margin-top:12px">
-        <h4>评分原因</h4>
-        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 1/4房</span><span class="factor-tag factor-price">价格 20-43万</span><span class="factor-tag factor-quality">新房楼盘</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
