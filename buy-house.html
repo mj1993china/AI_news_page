@@ -7,365 +7,1676 @@
   <style>
     body { margin: 0; font-family: "Microsoft YaHei", Arial, sans-serif; color: #1f2933; background: #f7f8fa; }
     header { padding: 24px 32px; background: #ffffff; border-bottom: 1px solid #e5e7eb; }
-    main { padding: 24px 32px; }
+    main { padding: 24px 32px; max-width: 1200px; }
     h1 { margin: 0 0 8px; font-size: 28px; }
-    h2 { margin-top: 28px; font-size: 20px; }
+    h2 { margin-top: 32px; font-size: 20px; }
     .meta { color: #64748b; }
+
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
     .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
-    .num { font-size: 26px; font-weight: 700; }
-    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e5e7eb; }
-    th, td { padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
-    th { background: #f1f5f9; font-weight: 700; }
-    .score { font-weight: 700; color: #0f766e; }
+    .card .num { font-size: 26px; font-weight: 700; }
+    .card .hint { font-size: 13px; color: #64748b; margin-top: 4px; }
+
+    .listing-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; }
+    .listing-card[open] { border-color: #0f766e; }
+    .listing-card summary {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+      cursor: pointer; user-select: none; list-style: none;
+    }
+    .listing-card summary::-webkit-details-marker { display: none; }
+    .listing-card summary::before { content: "▶"; font-size: 10px; color: #94a3b8; margin-right: 2px; transition: transform 0.15s; }
+    .listing-card[open] summary::before { transform: rotate(90deg); }
+    .listing-card summary:hover { background: #f8fafc; }
+
+    .rank { font-weight: 700; color: #0f766e; min-width: 30px; }
+    .cname { font-weight: 700; min-width: 120px; }
+    .cname a { color: #0f766e; text-decoration: none; }
+    .cname a:hover { text-decoration: underline; }
+    .cscore { font-weight: 700; color: #0f766e; min-width: 48px; text-align: right; }
+    .cprice { min-width: 80px; font-size: 13px; color: #334155; }
+    .crooms { min-width: 60px; font-size: 13px; color: #334155; }
+    .cloc { min-width: 140px; font-size: 13px; color: #64748b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+    .creasons { font-size: 12px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 360px; }
+    .source-action { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 4px 8px; border-radius: 6px; border: 1px solid #99f6e4; background: #ecfdf5; color: #0f766e; font-size: 12px; text-decoration: none; }
+    .source-action:hover { background: #ccfbf1; }
+    .source-action.disabled { border-color: #e5e7eb; background: #f8fafc; color: #94a3b8; }
+
+    .detail { padding: 0 16px 16px 44px; border-top: 1px solid #e5e7eb; }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+    .detail-box { }
+    .detail-box h4 { margin: 0 0 8px; font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .detail-rows { font-size: 13px; line-height: 2; }
+    .detail-rows .dl { display: inline-block; min-width: 48px; color: #94a3b8; margin-right: 8px; }
+    .detail-label { display: inline-block; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px 4px 2px 0; }
+    .label-warn { background: #fef3c7; color: #92400e; }
+    .label-flag { background: #dbeafe; color: #1e40af; }
+
+    @media (max-width: 800px) {
+      main { padding: 12px 8px; }
+      .listing-card summary { flex-wrap: wrap; gap: 4px 8px; font-size: 13px; }
+      .creasons { display: none; }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>端州楼盘评分看板</h1>
-    <div class="meta">生成时间：2026-05-16T03:49:47.043Z · 候选数量：106</div>
+    <div class="meta">生成时间：2026-05-16T04:27:01.506Z · 候选数量：106（46 新房 + 60 二手房）</div>
   </header>
   <main>
     <section class="cards">
-      <div class="card"><div class="num">106</div><div>候选楼盘/房源</div></div>
-      <div class="card"><div class="num">77</div><div>当前最高分</div></div>
-      <div class="card"><div class="num">20</div><div>80万左右3-4房优先对象</div></div>
+      <div class="card">
+        <div class="num">106</div>
+        <div>候选楼盘/房源</div>
+        <div class="hint">本次评分纳入排序的新房楼盘和二手房房源总数</div>
+      </div>
+      <div class="card">
+        <div class="num">77</div>
+        <div>当前最高分</div>
+        <div class="hint">本次评分中综合分最高的候选对象分数，满分 100</div>
+      </div>
+      <div class="card">
+        <div class="num">20</div>
+        <div>80万左右3-4房优先对象</div>
+        <div class="hint">同时命中"接近80万预算"和"3-4房"的候选数量</div>
+      </div>
     </section>
-    <h2>综合分 Top 30</h2>
-    <table>
-      <thead><tr><th>排名</th><th>名称</th><th>类型</th><th>分数</th><th>总价</th><th>户型</th><th>位置</th><th>主要原因</th></tr></thead>
-      <tbody>
-  <tr>
-    <td>1</td>
-    <td>敏捷水映澜山</td>
-    <td>newhouse</td>
-    <td class="score">77</td>
-    <td>53-81.5万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/北岭山森林公园南侧（七星一路）</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
 
-  <tr>
-    <td>2</td>
-    <td>世茂滨江壹号</td>
-    <td>newhouse</td>
-    <td class="score">70</td>
-    <td>86-260万</td>
-    <td>3/4/5房</td>
-    <td>端州区/新东/滨江二路</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；位置位于端州关注范围</td>
-  </tr>
+    <p class="meta" style="margin-top:20px">本看板是筛选雷达，不是购买建议；分数用于排序和发现值得复核的对象。</p>
 
-  <tr>
-    <td>3</td>
-    <td>城市雅居</td>
-    <td>newhouse</td>
-    <td class="score">69</td>
-    <td>75万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/吉兆街1号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>4</td>
-    <td>君安峰景四季</td>
-    <td>newhouse</td>
-    <td class="score">69</td>
-    <td>63-86.5万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/端州一路君安峰景湾</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>5</td>
-    <td>敏捷西城都荟</td>
-    <td>newhouse</td>
-    <td class="score">69</td>
-    <td>80万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/端州七路与桥北路交汇处</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>6</td>
-    <td>上城时光</td>
-    <td>newhouse</td>
-    <td class="score">69</td>
-    <td>69-89万</td>
-    <td>3/4房</td>
-    <td>端州区/端州城东/黄岗街道上城时光</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>7</td>
-    <td>正域尚苑</td>
-    <td>newhouse</td>
-    <td class="score">69</td>
-    <td>70-98万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/二塔路3号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>8</td>
-    <td>端州名门</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>62万</td>
-    <td>3房</td>
-    <td>端州区/端州/太和北路21号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>9</td>
-    <td>光大江山帝景</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>60-68.5万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/龙塘南路光大江山帝景</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>10</td>
-    <td>鸿景明园</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>95万</td>
-    <td>3/4/5房</td>
-    <td>端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>11</td>
-    <td>名城星颂</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>50-88万</td>
-    <td>2/3/4房</td>
-    <td>端州区/端州/马头岗路名城星颂</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>12</td>
-    <td>世茂滨江壹号</td>
-    <td>ershoufang</td>
-    <td class="score">67</td>
-    <td>73万</td>
-    <td>3房</td>
-    <td>世茂滨江壹号</td>
-    <td>户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核</td>
-  </tr>
-
-  <tr>
-    <td>13</td>
-    <td>世茂滨江壹号</td>
-    <td>ershoufang</td>
-    <td class="score">67</td>
-    <td>74万</td>
-    <td>3房</td>
-    <td>世茂滨江壹号</td>
-    <td>户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核</td>
-  </tr>
-
-  <tr>
-    <td>14</td>
-    <td>天峰誉珑轩</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>65-68万</td>
-    <td>3房</td>
-    <td>端州区/端州/大鼎路天峰誉珑轩</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>15</td>
-    <td>壹品华府</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>60万</td>
-    <td>3房</td>
-    <td>端州区/厂排街壹品华府</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>16</td>
-    <td>中源誉峰</td>
-    <td>newhouse</td>
-    <td class="score">67</td>
-    <td>67万</td>
-    <td>3房</td>
-    <td>端州区/端州/星湖大道中源誉峰</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带</td>
-  </tr>
-
-  <tr>
-    <td>17</td>
-    <td>城投星悦四季</td>
-    <td>newhouse</td>
-    <td class="score">66</td>
-    <td>100万</td>
-    <td>2/3/4房</td>
-    <td>端州区/新东/肇庆市端州区信安三路城投星悦四季</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>18</td>
-    <td>世茂滨江壹号</td>
-    <td>ershoufang</td>
-    <td class="score">65</td>
-    <td>69.8万</td>
-    <td>3房</td>
-    <td>世茂滨江壹号</td>
-    <td>户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核</td>
-  </tr>
-
-  <tr>
-    <td>19</td>
-    <td>名城星畔</td>
-    <td>newhouse</td>
-    <td class="score">64</td>
-    <td>100万</td>
-    <td>3房</td>
-    <td>端州区/端州/肇庆市端州区锦绣路4号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>20</td>
-    <td>喜利天澜</td>
-    <td>newhouse</td>
-    <td class="score">64</td>
-    <td>82-114.5万</td>
-    <td>2/3/4房</td>
-    <td>端州区/端州城东/二塔路喜利天澜江南美誉</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>21</td>
-    <td>世茂滨江壹号</td>
-    <td>ershoufang</td>
-    <td class="score">62</td>
-    <td>98.8万</td>
-    <td>4房</td>
-    <td>世茂滨江壹号</td>
-    <td>户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核</td>
-  </tr>
-
-  <tr>
-    <td>22</td>
-    <td>世茂滨江壹号</td>
-    <td>ershoufang</td>
-    <td class="score">62</td>
-    <td>99万</td>
-    <td>4房</td>
-    <td>世茂滨江壹号</td>
-    <td>户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核</td>
-  </tr>
-
-  <tr>
-    <td>23</td>
-    <td>光大锦绣山河</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>110万</td>
-    <td>4房</td>
-    <td>端州区/端州/大鼎路锦绣山河一期</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>24</td>
-    <td>海湾花城</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>30万</td>
-    <td>1/2/3房</td>
-    <td>端州区/端州城中/人民北路8号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>25</td>
-    <td>恒裕和园</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>19-48万</td>
-    <td>1/2/3房</td>
-    <td>端州区/端州/桥北路恒裕和园</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>26</td>
-    <td>恒裕雅轩</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>21-42.5万</td>
-    <td>1/2/3房</td>
-    <td>端州区/端州/风华路恒裕雅轩</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>27</td>
-    <td>华英城明月湾</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>97.5-125万</td>
-    <td>3/4房</td>
-    <td>端州区/端州/广东省肇庆市端州区信安三路8号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>28</td>
-    <td>嘉湖美都</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>45-72万</td>
-    <td>2/3/4房</td>
-    <td>端州区/端州/桂园路嘉湖美都</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>29</td>
-    <td>天鹅堡</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>50万</td>
-    <td>1/2/3/4房</td>
-    <td>端州区/端州/信安6路8号</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-
-  <tr>
-    <td>30</td>
-    <td>囍园</td>
-    <td>newhouse</td>
-    <td class="score">61</td>
-    <td>20-43万</td>
-    <td>1/4房</td>
-    <td>端州区/端州城西/广东省肇庆市端州区西江北路</td>
-    <td>户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围</td>
-  </tr>
-</tbody>
-    </table>
+    <h2>综合分 Top 30 看板</h2>
+    <p class="meta" style="margin-bottom:8px">点击每行展开查看完整评分详情；名称可点击跳转原始房源页面。</p>
+    
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#1</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mjsylsblfsg/" target="_blank" rel="noopener noreferrer">敏捷水映澜山</a></span>
+      <span class="cscore">77分</span>
+      <span class="cprice">53-81.5万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/北岭山森林公园南侧（七星一路）</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_mjsylsblfsg/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>敏捷水映澜山</span></div>
+            <div><span class="dl">总价</span><span>53-81.5万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/北岭山森林公园南侧（七星一路）</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_mjsylsblfsg/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_mjsylsblfsg/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">山景</span><span class="detail-label">天然氧吧</span><span class="detail-label">近主干道</span><span class="detail-label">公交直达</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 6</span>
+    <span class="detail-label">家庭日常 5</span>
+    <span class="detail-label">城市资源 3</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.51205 · 纬度 23.116113</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">32%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">17%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">10%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">6%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频6、家庭5、城市3</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#2</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_smbjyhblgim/" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">70分</span>
+      <span class="cprice">86-260万</span>
+      <span class="crooms">3/4/5房</span>
+      <span class="cloc">端州区/新东/滨江二路</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_smbjyhblgim/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>86-260万</span></div>
+            <div><span class="dl">户型</span><span>3/4/5房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/新东/滨江二路</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_smbjyhblgim/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_smbjyhblgim/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">公园</span><span class="detail-label">现房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.529942 · 纬度 23.075654</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+18</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:72%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">20%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+15</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:60%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+2</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:8%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">3%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>新东片区作为后续规划和配套观察对象</li><li>价格偏离当前核心预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#3</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_csyjbnidp/" target="_blank" rel="noopener noreferrer">城市雅居</a></span>
+      <span class="cscore">69分</span>
+      <span class="cprice">75万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/吉兆街1号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_csyjbnidp/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>城市雅居</span></div>
+            <div><span class="dl">总价</span><span>75万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/吉兆街1号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_csyjbnidp/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_csyjbnidp/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">现房</span><span class="detail-label">低密居所</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.45596832188 · 纬度 23.061614228024</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">14%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#4</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jafjwbnies/" target="_blank" rel="noopener noreferrer">君安峰景四季</a></span>
+      <span class="cscore">69分</span>
+      <span class="cprice">63-86.5万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/端州一路君安峰景湾</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_jafjwbnies/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>君安峰景四季</span></div>
+            <div><span class="dl">总价</span><span>63-86.5万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/端州一路君安峰景湾</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_jafjwbnies/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_jafjwbnies/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.52498720667 · 纬度 23.102086770417</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">14%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#5</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mjxcdhblkgn/" target="_blank" rel="noopener noreferrer">敏捷西城都荟</a></span>
+      <span class="cscore">69分</span>
+      <span class="cprice">80万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/端州七路与桥北路交汇处</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_mjxcdhblkgn/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>敏捷西城都荟</span></div>
+            <div><span class="dl">总价</span><span>80万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/端州七路与桥北路交汇处</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_mjxcdhblkgn/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_mjxcdhblkgn/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">近主干道</span><span class="detail-label">公交直达</span><span class="detail-label">自持商业</span><span class="detail-label">医疗配套</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.45213835138 · 纬度 23.063720655226</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">14%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#6</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_scsgbocbc/" target="_blank" rel="noopener noreferrer">上城时光</a></span>
+      <span class="cscore">69分</span>
+      <span class="cprice">69-89万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州城东/黄岗街道上城时光</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_scsgbocbc/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>上城时光</span></div>
+            <div><span class="dl">总价</span><span>69-89万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州城东/黄岗街道上城时光</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_scsgbocbc/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_scsgbocbc/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">期房</span><span class="detail-label">小三居</span><span class="detail-label">低密居所</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.50504027738 · 纬度 23.064481954874</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">14%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#7</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_zysybnidq/" target="_blank" rel="noopener noreferrer">正域尚苑</a></span>
+      <span class="cscore">69分</span>
+      <span class="cprice">70-98万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/二塔路3号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_zysybnidq/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>正域尚苑</span></div>
+            <div><span class="dl">总价</span><span>70-98万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/二塔路3号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_zysybnidq/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_zysybnidq/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小三居</span><span class="detail-label">小型社区</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.50346982983 · 纬度 23.063220177636</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">14%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#8</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_dzmmbnifg/" target="_blank" rel="noopener noreferrer">端州名门</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">62万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">端州区/端州/太和北路21号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_dzmmbnifg/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>端州名门</span></div>
+            <div><span class="dl">总价</span><span>62万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/太和北路21号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_dzmmbnifg/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_dzmmbnifg/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">现房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.43512022159 · 纬度 23.070083356198</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#9</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_gdjsdjbnblu/" target="_blank" rel="noopener noreferrer">光大江山帝景</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">60-68.5万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/龙塘南路光大江山帝景</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_gdjsdjbnblu/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>光大江山帝景</span></div>
+            <div><span class="dl">总价</span><span>60-68.5万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/龙塘南路光大江山帝景</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_gdjsdjbnblu/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_gdjsdjbnblu/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.4259908616 · 纬度 23.064237310028</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#10</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hjmybnife/" target="_blank" rel="noopener noreferrer">鸿景明园</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">95万</span>
+      <span class="crooms">3/4/5房</span>
+      <span class="cloc">端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_hjmybnife/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>鸿景明园</span></div>
+            <div><span class="dl">总价</span><span>95万</span></div>
+            <div><span class="dl">户型</span><span>3/4/5房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_hjmybnife/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_hjmybnife/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">期房</span><span class="detail-label">即将交房</span><span class="detail-label">大型社区</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.455509 · 纬度 23.075968</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#11</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mcxsbnieu/" target="_blank" rel="noopener noreferrer">名城星颂</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">50-88万</span>
+      <span class="crooms">2/3/4房</span>
+      <span class="cloc">端州区/端州/马头岗路名城星颂</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_mcxsbnieu/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>名城星颂</span></div>
+            <div><span class="dl">总价</span><span>50-88万</span></div>
+            <div><span class="dl">户型</span><span>2/3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/马头岗路名城星颂</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_mcxsbnieu/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_mcxsbnieu/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.5215342045 · 纬度 23.105601165931</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#12</span>
+      <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">73万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">世茂滨江壹号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格高度贴近80万预算</span>
+      <a class="source-action" href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>73万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>97㎡</span></div>
+            <div><span class="dl">位置</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">https://zq.ke.com/ershoufang/105124290584.html</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">7,526元/平</span><span class="detail-label">1人关注 / 15天前发布</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+19</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:76%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">28%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+11</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:44%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">16%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">15%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#13</span>
+      <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">74万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">世茂滨江壹号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格高度贴近80万预算</span>
+      <a class="source-action" href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>74万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>97㎡</span></div>
+            <div><span class="dl">位置</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">https://zq.ke.com/ershoufang/105124290535.html</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">7,629元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+19</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:76%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">28%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+11</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:44%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">16%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+10</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:40%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">15%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格高度贴近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#14</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_tfylxbnifm/" target="_blank" rel="noopener noreferrer">天峰誉珑轩</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">65-68万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">端州区/端州/大鼎路天峰誉珑轩</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_tfylxbnifm/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>天峰誉珑轩</span></div>
+            <div><span class="dl">总价</span><span>65-68万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/大鼎路天峰誉珑轩</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_tfylxbnifm/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_tfylxbnifm/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.4301494867 · 纬度 23.066101887945</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#15</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_yphfbnifl/" target="_blank" rel="noopener noreferrer">壹品华府</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">60万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">端州区/厂排街壹品华府</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_yphfbnifl/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>壹品华府</span></div>
+            <div><span class="dl">总价</span><span>60万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/厂排街壹品华府</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_yphfbnifl/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_yphfbnifl/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.44802187508 · 纬度 23.052051347271</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#16</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_zyyfbnicc/" target="_blank" rel="noopener noreferrer">中源誉峰</a></span>
+      <span class="cscore">67分</span>
+      <span class="cprice">67万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">端州区/端州/星湖大道中源誉峰</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_zyyfbnicc/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>中源誉峰</span></div>
+            <div><span class="dl">总价</span><span>67万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/星湖大道中源誉峰</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_zyyfbnicc/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_zyyfbnicc/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.51711227296 · 纬度 23.106408560113</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+25</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:100%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">37%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">19%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">7%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价接近80万预算带</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#17</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_ctxysjbnokj/" target="_blank" rel="noopener noreferrer">城投星悦四季</a></span>
+      <span class="cscore">66分</span>
+      <span class="cprice">100万</span>
+      <span class="crooms">2/3/4房</span>
+      <span class="cloc">端州区/新东/肇庆市端州区信安三路城投星悦四季</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_ctxysjbnokj/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>城投星悦四季</span></div>
+            <div><span class="dl">总价</span><span>100万</span></div>
+            <div><span class="dl">户型</span><span>2/3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/新东/肇庆市端州区信安三路城投星悦四季</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_ctxysjbnokj/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_ctxysjbnokj/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">小型社区</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.5142201902 · 纬度 23.084774690733</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">33%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">24%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+15</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:60%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>新东片区作为后续规划和配套观察对象</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#18</span>
+      <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">65分</span>
+      <span class="cprice">69.8万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">世茂滨江壹号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
+      <a class="source-action" href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>69.8万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>97㎡</span></div>
+            <div><span class="dl">位置</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">https://zq.ke.com/ershoufang/105124290536.html</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">7,196元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+19</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:76%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">29%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+11</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:44%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">17%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">22%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">12%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价接近80万预算带</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#19</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_mcxpbniet/" target="_blank" rel="noopener noreferrer">名城星畔</a></span>
+      <span class="cscore">64分</span>
+      <span class="cprice">100万</span>
+      <span class="crooms">3房</span>
+      <span class="cloc">端州区/端州/肇庆市端州区锦绣路4号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_mcxpbniet/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>名城星畔</span></div>
+            <div><span class="dl">总价</span><span>100万</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/肇庆市端州区锦绣路4号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_mcxpbniet/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_mcxpbniet/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">小型社区</span><span class="detail-label">花园洋房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.50045069022 · 纬度 23.083444461722</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">34%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">25%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">20%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#20</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_xltljnmybnaxy/" target="_blank" rel="noopener noreferrer">喜利天澜</a></span>
+      <span class="cscore">64分</span>
+      <span class="cprice">82-114.5万</span>
+      <span class="crooms">2/3/4房</span>
+      <span class="cloc">端州区/端州城东/二塔路喜利天澜江南美誉</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_xltljnmybnaxy/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>喜利天澜</span></div>
+            <div><span class="dl">总价</span><span>82-114.5万</span></div>
+            <div><span class="dl">户型</span><span>2/3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州城东/二塔路喜利天澜江南美誉</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_xltljnmybnaxy/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_xltljnmybnaxy/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.50713729669 · 纬度 23.057252930847</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">34%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">25%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">20%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#21</span>
+      <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">62分</span>
+      <span class="cprice">98.8万</span>
+      <span class="crooms">4房</span>
+      <span class="cloc">世茂滨江壹号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
+      <a class="source-action" href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>98.8万</span></div>
+            <div><span class="dl">户型</span><span>4房</span></div>
+            <div><span class="dl">面积</span><span>126㎡</span></div>
+            <div><span class="dl">位置</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">https://zq.ke.com/ershoufang/105124290534.html</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">7,842元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+11</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:44%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">18%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价仍在可参考范围</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#22</span>
+      <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cscore">62分</span>
+      <span class="cprice">99万</span>
+      <span class="crooms">4房</span>
+      <span class="cloc">世茂滨江壹号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
+      <a class="source-action" href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">名称</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">总价</span><span>99万</span></div>
+            <div><span class="dl">户型</span><span>4房</span></div>
+            <div><span class="dl">面积</span><span>130㎡</span></div>
+            <div><span class="dl">位置</span><span>世茂滨江壹号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">https://zq.ke.com/ershoufang/105124290537.html</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">7,616元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 8</span>
+    <span class="detail-label">家庭日常 7</span>
+    <span class="detail-label">城市资源 5</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+11</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:44%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">18%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+14</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:56%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">23%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+8</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:32%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">13%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>总价仍在可参考范围</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频8、家庭7、城市5</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>价格接近80万预算</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#23</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jxshyqbnbmo/" target="_blank" rel="noopener noreferrer">光大锦绣山河</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">110万</span>
+      <span class="crooms">4房</span>
+      <span class="cloc">端州区/端州/大鼎路锦绣山河一期</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_jxshyqbnbmo/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>光大锦绣山河</span></div>
+            <div><span class="dl">总价</span><span>110万</span></div>
+            <div><span class="dl">户型</span><span>4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/大鼎路锦绣山河一期</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_jxshyqbnbmo/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_jxshyqbnbmo/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">现房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.44031461302 · 纬度 23.059207573993</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#24</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hwhcbnwiw/" target="_blank" rel="noopener noreferrer">海湾花城</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">30万</span>
+      <span class="crooms">1/2/3房</span>
+      <span class="cloc">端州区/端州城中/人民北路8号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_hwhcbnwiw/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>海湾花城</span></div>
+            <div><span class="dl">总价</span><span>30万</span></div>
+            <div><span class="dl">户型</span><span>1/2/3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州城中/人民北路8号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_hwhcbnwiw/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_hwhcbnwiw/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span><span class="detail-label">已交房超2年</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.46910819512 · 纬度 23.060323852994</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#25</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hyhybnihc/" target="_blank" rel="noopener noreferrer">恒裕和园</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">19-48万</span>
+      <span class="crooms">1/2/3房</span>
+      <span class="cloc">端州区/端州/桥北路恒裕和园</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_hyhybnihc/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>恒裕和园</span></div>
+            <div><span class="dl">总价</span><span>19-48万</span></div>
+            <div><span class="dl">户型</span><span>1/2/3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/桥北路恒裕和园</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_hyhybnihc/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_hyhybnihc/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">现房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.45025451933 · 纬度 23.0792066405</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#26</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hyyxbniec/" target="_blank" rel="noopener noreferrer">恒裕雅轩</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">21-42.5万</span>
+      <span class="crooms">1/2/3房</span>
+      <span class="cloc">端州区/端州/风华路恒裕雅轩</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_hyyxbniec/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>恒裕雅轩</span></div>
+            <div><span class="dl">总价</span><span>21-42.5万</span></div>
+            <div><span class="dl">户型</span><span>1/2/3房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/风华路恒裕雅轩</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_hyyxbniec/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_hyyxbniec/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.45221067402 · 纬度 23.070694967089</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#27</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_hycmywbnier/" target="_blank" rel="noopener noreferrer">华英城明月湾</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">97.5-125万</span>
+      <span class="crooms">3/4房</span>
+      <span class="cloc">端州区/端州/广东省肇庆市端州区信安三路8号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_hycmywbnier/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>华英城明月湾</span></div>
+            <div><span class="dl">总价</span><span>97.5-125万</span></div>
+            <div><span class="dl">户型</span><span>3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/广东省肇庆市端州区信安三路8号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_hycmywbnier/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_hycmywbnier/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">现房</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.51296720989 · 纬度 23.081084014981</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#28</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_jhmdbniff/" target="_blank" rel="noopener noreferrer">嘉湖美都</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">45-72万</span>
+      <span class="crooms">2/3/4房</span>
+      <span class="cloc">端州区/端州/桂园路嘉湖美都</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_jhmdbniff/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>嘉湖美都</span></div>
+            <div><span class="dl">总价</span><span>45-72万</span></div>
+            <div><span class="dl">户型</span><span>2/3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/桂园路嘉湖美都</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_jhmdbniff/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_jhmdbniff/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.43292502158 · 纬度 23.077455999474</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#29</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_tebbnieh/" target="_blank" rel="noopener noreferrer">天鹅堡</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">50万</span>
+      <span class="crooms">1/2/3/4房</span>
+      <span class="cloc">端州区/端州/信安6路8号</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_tebbnieh/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>天鹅堡</span></div>
+            <div><span class="dl">总价</span><span>50万</span></div>
+            <div><span class="dl">户型</span><span>1/2/3/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/信安6路8号</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_tebbnieh/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_tebbnieh/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span><span class="detail-label">已交房1年内</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.50036096123 · 纬度 23.069021050419</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#30</span>
+      <span class="cname"><a href="https://m.ke.com/zq/loupan/p_xybntdf/" target="_blank" rel="noopener noreferrer">囍园</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">20-43万</span>
+      <span class="crooms">1/4房</span>
+      <span class="cloc">端州区/端州城西/广东省肇庆市端州区西江北路</span>
+      <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
+      <a class="source-action" href="https://m.ke.com/zq/loupan/p_xybntdf/" target="_blank" rel="noopener noreferrer">查看来源</a>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>新房楼盘</span></div>
+            <div><span class="dl">名称</span><span>囍园</span></div>
+            <div><span class="dl">总价</span><span>20-43万</span></div>
+            <div><span class="dl">户型</span><span>1/4房</span></div>
+            <div><span class="dl">面积</span><span>建面</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州城西/广东省肇庆市端州区西江北路</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.ke.com/zq/loupan/p_xybntdf/" target="_blank" rel="noopener noreferrer">https://m.ke.com/zq/loupan/p_xybntdf/</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>标签与特征</h4>
+          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小户型</span><span class="detail-label">小一居</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套</h4>
+          <div class="tag-list">
+    <span class="detail-label">高频日常 0</span>
+    <span class="detail-label">家庭日常 0</span>
+    <span class="detail-label">城市资源 0</span>
+    </div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span>经度 112.45506082391 · 纬度 23.074569045465</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <table style="width:100%;border:none"><tbody><tr><td>家庭适配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+22</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:88%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">36%</span></div></td></tr><tr><td>楼盘质量</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+16</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:64%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">26%</span></div></td></tr><tr><td>周边即时配套</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr><tr><td>生活圈前景</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+13</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:52%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">21%</span></div></td></tr><tr><td>价格匹配</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>信息可信度</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+5</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:20%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">8%</span></div></td></tr><tr><td>风险扣分</td><td style="width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="min-width:36px;text-align:right;font-weight:700">+0</span><div style="flex:1;background:#e5e7eb;border-radius:3px;height:8px"><div style="width:2%;height:8px;background:#0f766e;border-radius:3px"></div></div><span style="font-size:12px;color:#64748b">0%</span></div></td></tr></tbody></table>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分原因</h4>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8"><li>户型命中3-4房核心关注区间</li><li>新房/楼盘数据适合优先关注</li><li>总价仍在可参考范围</li><li>位置位于端州关注范围</li><li>楼盘标签包含可用的居住质量线索</li><li>面积或楼盘基础信息可用于后续复核</li><li>周边配套数量：高频0、家庭0、城市0</li><li>第一版生活圈前景使用基础分，后续接人口和规划数据</li><li>已有标签显示片区具备配套基础</li><li>价格可作为参考样本</li><li>字段完整度约100%</li></ol>
+      </div>
+    </div>
+  </details>
   </main>
 </body>
 </html>
