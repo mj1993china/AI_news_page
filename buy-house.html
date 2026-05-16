@@ -23,7 +23,7 @@
     .listing-card.is-changed { border-color: #fdba74; }
     .listing-card.is-delisted { border-color: #cbd5e1; background: #f8fafc; }
     .listing-card summary {
-      display: flex; align-items: center; gap: 12px; padding: 12px 70px 12px 16px;
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px;
       cursor: pointer; user-select: none; list-style: none;
     }
     .listing-card summary::-webkit-details-marker { display: none; }
@@ -39,7 +39,18 @@
     .cprice { min-width: 80px; font-size: 13px; color: #334155; }
     .crooms { min-width: 60px; font-size: 13px; color: #334155; }
     .cloc { min-width: 140px; font-size: 13px; color: #64748b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
-    .creasons { font-size: 12px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 360px; }
+    .summary-sources { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; }
+    .summary-source {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 22px; padding: 2px 7px; border-radius: 999px;
+      font-size: 12px; font-weight: 800; line-height: 1.2; border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .source-beike { background: #ecfdf5; border-color: #99f6e4; color: #0f766e; }
+    .source-58 { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+    .source-fang { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .source-other { background: #f8fafc; border-color: #cbd5e1; color: #475569; }
+    .creasons { font-size: 12px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px; }
     .source-action { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 4px 8px; border-radius: 6px; border: 1px solid #99f6e4; background: #ecfdf5; color: #0f766e; font-size: 12px; text-decoration: none; }
     .source-action:hover { background: #ccfbf1; }
     .source-action.disabled { border-color: #e5e7eb; background: #f8fafc; color: #94a3b8; }
@@ -47,10 +58,10 @@
     .source-pill { display: inline-flex; padding: 2px 7px; border-radius: 999px; border: 1px solid #bfdbfe; background: #eff6ff; color: #1d4ed8; font-size: 12px; text-decoration: none; line-height: 1.4; }
     .source-pill:hover { background: #dbeafe; }
     .change-badge {
-      position: absolute; top: 8px; right: 10px; z-index: 2;
       display: inline-flex; align-items: center; justify-content: center;
-      min-width: 42px; padding: 3px 8px; border-radius: 999px;
+      min-width: 38px; min-height: 22px; padding: 2px 8px; border-radius: 999px;
       font-size: 12px; font-weight: 800; line-height: 1.2; border: 1px solid transparent;
+      flex: 0 0 auto;
     }
     .badge-new { background: #dcfce7; border-color: #86efac; color: #15803d; }
     .badge-changed { background: #ffedd5; border-color: #fdba74; color: #c2410c; }
@@ -102,6 +113,7 @@
       main { padding: 12px 8px; }
       .listing-card summary { flex-wrap: wrap; gap: 4px 8px; font-size: 13px; }
       .creasons { display: none; }
+      .summary-sources { order: 10; width: 100%; }
     }
   </style>
 </head>
@@ -150,14 +162,15 @@
     <p class="meta" style="margin-bottom:8px">点击每行展开查看完整评分详情；名称可点击跳转原始房源页面。</p>
     
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#1</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">敏捷水映澜山</a></span>
       <span class="cscore">77分</span>
       <span class="cprice">53-81.5万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州/北岭山森林公园南侧（七星一路）</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -255,14 +268,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#2</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">73分</span>
       <span class="cprice">85.5万</span>
       <span class="crooms">1房</span>
       <span class="cloc">端州区/新东/滨江二路</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
       <span class="creasons">新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -360,14 +374,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#3</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390745491202048" target="_blank" rel="noopener noreferrer">城市雅居</a></span>
       <span class="cscore">69分</span>
       <span class="cprice">75万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州/吉兆街1号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390745491202048" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -465,14 +480,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#4</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390764787040256" target="_blank" rel="noopener noreferrer">君安峰景四季</a></span>
       <span class="cscore">69分</span>
       <span class="cprice">63-86.5万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州/端州一路君安峰景湾</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390764787040256" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -570,14 +586,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#5</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1446232646344704" target="_blank" rel="noopener noreferrer">上城时光</a></span>
       <span class="cscore">69分</span>
       <span class="cprice">69-89万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州城东/黄岗街道上城时光</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1446232646344704" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -675,14 +692,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#6</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390745522528256" target="_blank" rel="noopener noreferrer">正域尚苑</a></span>
       <span class="cscore">69分</span>
       <span class="cprice">70-98万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州/二塔路3号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390745522528256" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -780,14 +798,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#7</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390813245349888" target="_blank" rel="noopener noreferrer">端州名门</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">62万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州/太和北路21号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390813245349888" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -885,14 +904,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#8</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">光大江山帝景</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">60-68.5万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州/龙塘南路光大江山帝景</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -990,14 +1010,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#9</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">鸿景明园</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">95万</span>
       <span class="crooms">4房</span>
       <span class="cloc">端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1095,14 +1116,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#10</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">名城星颂</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">50-88万</span>
       <span class="crooms">2/3/4房</span>
       <span class="cloc">端州区/端州/马头岗路名城星颂</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1200,14 +1222,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#11</span>
+      
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">73万</span>
       <span class="crooms">3房</span>
       <span class="cloc">世茂滨江壹号</span>
+      <span class="summary-sources"><span class="summary-source source-other">二手房</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格高度贴近80万预算</span>
       <a class="source-action" href="https://zq.ke.com/ershoufang/105124290584.html" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1305,14 +1328,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#12</span>
+      
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">74万</span>
       <span class="crooms">3房</span>
       <span class="cloc">世茂滨江壹号</span>
+      <span class="summary-sources"><span class="summary-source source-other">二手房</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格高度贴近80万预算</span>
       <a class="source-action" href="https://zq.ke.com/ershoufang/105124290535.html" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1410,14 +1434,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#13</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59098116/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">天峰誉珑轩</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">65-68万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州/大鼎路天峰誉珑轩</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59098116/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1515,14 +1540,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#14</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1390825648996352" target="_blank" rel="noopener noreferrer">壹品华府</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">60万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/厂排街壹品华府</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1390825648996352" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1620,14 +1646,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#15</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390674588139520" target="_blank" rel="noopener noreferrer">中源誉峰</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">67万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州/星湖大道中源誉峰</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390674588139520" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1725,14 +1752,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#16</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">城投星悦四季</a></span>
       <span class="cscore">66分</span>
       <span class="cprice">100万</span>
       <span class="crooms">2/3/4房</span>
       <span class="cloc">端州区/新东/肇庆市端州区信安三路城投星悦四季</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1830,14 +1858,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#17</span>
+      
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">65分</span>
       <span class="cprice">69.8万</span>
       <span class="crooms">3房</span>
       <span class="cloc">世茂滨江壹号</span>
+      <span class="summary-sources"><span class="summary-source source-other">二手房</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；总价接近80万预算带；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
       <a class="source-action" href="https://zq.ke.com/ershoufang/105124290536.html" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -1935,14 +1964,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#18</span>
+      
       <span class="cname"><a href="https://zhaoqing.newhouse.fang.com/loupan/2826202038.htm" target="_blank" rel="noopener noreferrer">名城星畔</a></span>
       <span class="cscore">64分</span>
       <span class="cprice">100万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州/肇庆市端州区锦绣路4号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-fang">Fang.com</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://zhaoqing.newhouse.fang.com/loupan/2826202038.htm" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2040,14 +2070,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#19</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109699/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">喜利天澜</a></span>
       <span class="cscore">64分</span>
       <span class="cprice">82-114.5万</span>
       <span class="crooms">3房</span>
       <span class="cloc">端州区/端州城东/二塔路喜利天澜江南美誉</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59109699/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2145,14 +2176,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#20</span>
+      
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">62分</span>
       <span class="cprice">98.8万</span>
       <span class="crooms">4房</span>
       <span class="cloc">世茂滨江壹号</span>
+      <span class="summary-sources"><span class="summary-source source-other">二手房</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
       <a class="source-action" href="https://zq.ke.com/ershoufang/105124290534.html" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2250,14 +2282,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#21</span>
+      
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">62分</span>
       <span class="cprice">99万</span>
       <span class="crooms">4房</span>
       <span class="cloc">世茂滨江壹号</span>
+      <span class="summary-sources"><span class="summary-source source-other">二手房</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；总价仍在可参考范围；面积或楼盘基础信息可用于后续复核；周边配套数量：高频8、家庭7、城市5；第一版生活圈前景使用基础分，后续接人口和规划数据；价格接近80万预算</span>
       <a class="source-action" href="https://zq.ke.com/ershoufang/105124290537.html" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2355,14 +2388,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#22</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">光大锦绣山河</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">110万</span>
       <span class="crooms">4房</span>
       <span class="cloc">端州区/端州/大鼎路锦绣山河一期</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2460,14 +2494,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#23</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=6#build_id=1427001745891328" target="_blank" rel="noopener noreferrer">海湾花城</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">30万</span>
       <span class="crooms">1/2/3房</span>
       <span class="cloc">端州区/端州城中/人民北路8号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=6#build_id=1427001745891328" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2565,14 +2600,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#24</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1391028608425984" target="_blank" rel="noopener noreferrer">恒裕和园</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">19-48万</span>
       <span class="crooms">1/2/3房</span>
       <span class="cloc">端州区/端州/桥北路恒裕和园</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1391028608425984" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2670,14 +2706,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#25</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">恒裕雅轩</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">21-42.5万</span>
       <span class="crooms">1/2/3房</span>
       <span class="cloc">端州区/端州/风华路恒裕雅轩</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2775,14 +2812,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#26</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">华英城明月湾</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">97.5-125万</span>
       <span class="crooms">3/4房</span>
       <span class="cloc">端州区/端州/广东省肇庆市端州区信安三路8号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2880,14 +2918,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#27</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">嘉湖美都</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">45-72万</span>
       <span class="crooms">2/3/4房</span>
       <span class="cloc">端州区/端州/桂园路嘉湖美都</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -2985,14 +3024,15 @@
     </div>
   </details>
   <details class="listing-card is-changed">
-    <span class="change-badge badge-changed">变更</span>
     <summary>
       <span class="rank">#28</span>
+      <span class="change-badge badge-changed">变更</span>
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">天鹅堡</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">50万</span>
       <span class="crooms">1/2/3/4房</span>
       <span class="cloc">端州区/端州/信安6路8号</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -3090,14 +3130,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#29</span>
+      
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1417932699844608" target="_blank" rel="noopener noreferrer">囍园</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">20-43万</span>
       <span class="crooms">1/4房</span>
       <span class="cloc">端州区/端州城西/广东省肇庆市端州区西江北路</span>
+      <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价仍在可参考范围；位置位于端州关注范围；楼盘标签包含可用的居住质量线索；面积或楼盘基础信息可用于后续复核</span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1417932699844608" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
@@ -3195,14 +3236,15 @@
     </div>
   </details>
   <details class="listing-card">
-    
     <summary>
       <span class="rank">#30</span>
+      
       <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">君安峰景湾</a></span>
       <span class="cscore">58.3分</span>
       <span class="cprice">48-93万</span>
       <span class="crooms">2/3/4房</span>
       <span class="cloc">端州/端州</span>
+      <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
       <span class="creasons">户型命中3-4房核心关注区间；新房/楼盘数据适合优先关注；总价接近80万预算带；位置位于端州关注范围；面积或楼盘基础信息可用于后续复核；周边配套数量：高频0、家庭0、城市0</span>
       <a class="source-action" href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22631a6e09-9513-452a-a77d-c63d5d49ec63%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
     </summary>
