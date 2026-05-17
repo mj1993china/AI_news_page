@@ -74,8 +74,16 @@
     .detail-rows { font-size: 13px; line-height: 2; }
     .detail-rows .dl { display: inline-block; min-width: 48px; color: #94a3b8; margin-right: 8px; }
     .detail-label { display: inline-block; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px 4px 2px 0; }
+    .property-label { background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; }
     .label-warn { background: #fef3c7; color: #92400e; }
     .label-flag { background: #dbeafe; color: #1e40af; }
+    .amenity-list { display: grid; gap: 7px; }
+    .amenity-row { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: start; font-size: 13px; }
+    .amenity-kind { display: inline-flex; align-items: center; justify-content: center; min-height: 22px; border-radius: 5px; background: #ecfdf5; color: #047857; font-size: 12px; font-weight: 800; }
+    .amenity-values { color: #334155; line-height: 1.7; }
+    .amenity-empty { color: #94a3b8; font-size: 13px; }
+    .amenity-scoreline { margin-top: 4px; padding-top: 6px; border-top: 1px dashed #e2e8f0; }
+    .amenity-score { background: #f8fafc; color: #64748b; }
     .score-chip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; }
     .score-chip {
       display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 8px;
@@ -191,17 +199,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">山景</span><span class="detail-label">天然氧吧</span><span class="detail-label">近主干道</span><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">现房</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">卧室全朝南</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">山景</span><span class="detail-label property-label">天然氧吧</span><span class="detail-label property-label">现房</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 6</span>
-    <span class="detail-label">家庭日常 5</span>
-    <span class="detail-label">城市资源 3</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">北岭山森林公园、有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">近主干道、公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 6</span>
+    <span class="detail-label amenity-score">教育医疗 5</span>
+    <span class="detail-label amenity-score">城市资源 3</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -297,17 +305,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">公园</span><span class="detail-label">现房</span><span class="detail-label">小户型</span><span class="detail-label">医疗配套</span><span class="detail-label">大阳台</span><span class="detail-label">双卫生间</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">卧室全朝南</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span><span class="detail-label">在售</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span><span class="detail-label property-label">小户型</span><span class="detail-label property-label">大阳台</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -403,17 +411,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">现房</span><span class="detail-label">低密居所</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -509,17 +517,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -615,17 +623,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">期房</span><span class="detail-label">小三居</span><span class="detail-label">低密居所</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">期房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -721,17 +729,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小三居</span><span class="detail-label">小型社区</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -827,17 +835,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">现房</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -933,17 +941,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">一房一价</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">卧室全朝南</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span><span class="detail-label">在售</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1039,17 +1047,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">期房</span><span class="detail-label">即将交房</span><span class="detail-label">大型社区</span><span class="detail-label">近主干道</span><span class="detail-label">自持商业</span><span class="detail-label">医疗配套</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">卧室全朝南</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">期房</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达、近主干道</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1145,17 +1153,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span><span class="detail-label">在售</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">大户型</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1251,17 +1259,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">7,526元/平</span><span class="detail-label">1人关注 / 15天前发布</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1357,17 +1365,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">7,629元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1463,17 +1471,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1569,17 +1577,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1675,17 +1683,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1781,17 +1789,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">小型社区</span><span class="detail-label">全景飘窗</span><span class="detail-label">大阳台</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">三房朝南</span><span class="detail-label">卧室全朝南</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">全景飘窗</span><span class="detail-label property-label">大阳台</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1887,17 +1895,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">7,196元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -1993,17 +2001,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">小型社区</span><span class="detail-label">花园洋房</span><span class="detail-label">在售</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2099,17 +2107,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">大户型</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2205,17 +2213,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">7,842元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2311,17 +2319,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">7,616元/平</span><span class="detail-label">0人关注 / 15天前发布</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 8</span>
-    <span class="detail-label">家庭日常 7</span>
-    <span class="detail-label">城市资源 5</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 8</span>
+    <span class="detail-label amenity-score">教育医疗 7</span>
+    <span class="detail-label amenity-score">城市资源 5</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2417,17 +2425,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">现房</span><span class="detail-label">一房一价</span><span class="detail-label">车位充足</span><span class="detail-label">高绿化率</span><span class="detail-label">全景飘窗</span><span class="detail-label">大阳台</span><span class="detail-label">双卫生间</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span><span class="detail-label">在售</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span><span class="detail-label property-label">全景飘窗</span><span class="detail-label property-label">大阳台</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2523,17 +2531,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span><span class="detail-label">已交房超2年</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2629,17 +2637,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">现房</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2735,17 +2743,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">小户型</span><span class="detail-label">低总价</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">小户型</span><span class="detail-label property-label">低总价</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2841,17 +2849,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">现房</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">大户型</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span><span class="detail-label property-label">大户型</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）、购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -2947,17 +2955,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">医疗配套</span><span class="detail-label">综合商场</span><span class="detail-label">公园</span><span class="detail-label">车位充足</span><span class="detail-label">全景飘窗</span><span class="detail-label">大阳台</span><span class="detail-label">双卫生间</span><span class="detail-label">双阳台</span><span class="detail-label">小户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">全景飘窗</span><span class="detail-label property-label">大阳台</span><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">小户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">综合商场线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">有医疗配套线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">有公园线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -3053,17 +3061,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">小型社区</span><span class="detail-label">超市</span><span class="detail-label">已交房1年内</span><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">卧室全朝南</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">小户型</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">卧室全朝南</span><span class="detail-label property-label">小户型</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -3159,17 +3167,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">公交直达</span><span class="detail-label">现房</span><span class="detail-label">小户型</span><span class="detail-label">小一居</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">现房</span><span class="detail-label property-label">小户型</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">交通</span><span class="amenity-values">公交直达</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
@@ -3265,17 +3273,17 @@
           </div>
         </div>
         <div class="detail-box">
-          <h4>标签与特征</h4>
-          <div class="tag-list"><span class="detail-label">双阳台</span><span class="detail-label">主卧套房</span><span class="detail-label">学校</span><span class="detail-label">购物中心</span><span class="detail-label">小户型</span><span class="detail-label">大户型</span><span class="detail-label">厨卫全明</span><span class="detail-label">南北通透</span></div>
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span class="detail-label property-label">双阳台</span><span class="detail-label property-label">主卧套房</span><span class="detail-label property-label">小户型</span><span class="detail-label property-label">大户型</span><span class="detail-label property-label">厨卫全明</span><span class="detail-label property-label">南北通透</span></div>
           <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
-          <h4>周边配套</h4>
-          <div class="tag-list">
-    <span class="detail-label">高频日常 0</span>
-    <span class="detail-label">家庭日常 0</span>
-    <span class="detail-label">城市资源 0</span>
-    </div>
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">购物中心线索（名称待补）</span></div><div class="amenity-row"><span class="amenity-kind">学校</span><span class="amenity-values">有学校线索（名称待补）</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
         </div>
         <div class="detail-box">
           <h4>坐标</h4>
