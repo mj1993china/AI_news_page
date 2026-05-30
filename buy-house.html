@@ -35,6 +35,16 @@
     .type-tab.active { background: #0f766e; color: #fff; }
     .type-count { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; min-height: 20px; padding: 0 6px; border-radius: 999px; background: #e2e8f0; color: #334155; font-size: 12px; }
     .type-tab.active .type-count { background: rgba(255,255,255,0.22); color: #fff; }
+    .city-tabs { display: flex; width: fit-content; gap: 6px; padding: 4px; margin: 12px auto 0; border: 1px solid #dbe7e2; border-radius: 8px; background: #fff; }
+    .city-tab {
+      display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 6px 12px;
+      border: 0; border-radius: 6px; background: transparent; color: #475569;
+      font: inherit; font-size: 14px; font-weight: 800; cursor: pointer;
+    }
+    .city-tab:hover { background: #f8fafc; }
+    .city-tab.active { background: #7c3aed; color: #fff; }
+    .city-count { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; min-height: 20px; padding: 0 6px; border-radius: 999px; background: #e2e8f0; color: #334155; font-size: 12px; }
+    .city-tab.active .city-count { background: rgba(255,255,255,0.22); color: #fff; }
     .listing-view[hidden] { display: none; }
     .listing-view-title { display: flex; justify-content: center; align-items: baseline; gap: 10px; flex-wrap: wrap; text-align: center; }
     .listing-limit { color: #64748b; font-size: 13px; font-weight: 400; }
@@ -180,12 +190,16 @@
 <body>
   <header>
     <h1>端州楼盘评分看板</h1>
-    <div class="meta">生成时间：2026-05-30T12:00:24.154Z · 候选数量：436（58 新房 + 378 二手房）</div>
+    <div class="meta">生成时间：2026-05-30T15:02:39.342Z · 候选数量：437（58 新房 + 379 二手房）</div>
   </header>
+  <nav class="city-tabs" aria-label="城市筛选">
+    <button class="city-tab" type="button" data-city="puning">普宁市 <span class="city-count">0</span></button>
+    <button class="city-tab" type="button" data-city="foshan-shunde">佛山顺德 <span class="city-count">0</span></button>
+  </nav>
   <main>
     <section class="cards">
       <div class="card">
-        <div class="num">436</div>
+        <div class="num">437</div>
         <div>候选楼盘/房源</div>
         <div class="hint">本次评分纳入排序的新房楼盘和二手房房源总数</div>
       </div>
@@ -200,17 +214,17 @@
         <div class="hint">同时命中"接近80万预算"和"3-4房"的候选数量</div>
       </div>
       <div class="card">
-        <div class="num">1</div>
+        <div class="num">0</div>
         <div>新增</div>
         <div class="hint">相比上一版评分数据首次出现的楼盘或房源数量</div>
       </div>
       <div class="card">
-        <div class="num">5</div>
+        <div class="num">25</div>
         <div>变更</div>
         <div class="hint">相比上一版关键价格、户型、面积、标签或评分发生变化的数量</div>
       </div>
       <div class="card">
-        <div class="num">3</div>
+        <div class="num">2</div>
         <div>疑似下架</div>
         <div class="hint">历史出现过，但本次全量抓取未再抓到的楼盘或房源数量</div>
       </div>
@@ -219,29 +233,29 @@
     <p class="meta" style="margin-top:20px">本看板是筛选雷达，不是购买建议；分数用于排序和发现值得复核的对象。</p>
     <section class="source-status-panel" aria-label="数据源状态">
     <div class="source-status-title">数据源状态</div>
-    <div class="source-status-row"><span class="source-status-kind">新房</span><span class="source-status-list"><span class="status-pill status-ok">Beike 成功 55 条</span><span class="status-pill status-warn">58Aifang 复用旧快照 25 条（来源返回验证页: https://mfang.58.com/zq/loupan/district12025/）</span><span class="status-pill status-ok">Fang.com 成功 8 条</span></span></div>
-    <div class="source-status-row"><span class="source-status-kind">二手房</span><span class="source-status-list"><span class="status-pill status-ok">FangSecondHand 成功 40 条</span><span class="status-pill status-warn">BeikeSecondHand 复用旧快照 372 条</span></span></div>
+    <div class="source-status-row"><span class="source-status-kind">新房</span><span class="source-status-list"><span class="status-pill status-ok">Beike 成功 55 条</span><span class="status-pill status-ok">58Aifang 成功 25 条</span><span class="status-pill status-ok">Fang.com 成功 8 条</span></span></div>
+    <div class="source-status-row"><span class="source-status-kind">二手房</span><span class="source-status-list"><span class="status-pill status-ok">FangSecondHand 成功 41 条</span><span class="status-pill status-warn">BeikeSecondHand 复用旧快照 372 条</span></span></div>
   </section>
 
     <nav class="type-tabs" aria-label="房源类型筛选">
       <button class="type-tab active" type="button" data-view-target="newhouse">新房 <span class="type-count">58</span></button>
-      <button class="type-tab" type="button" data-view-target="ershoufang">二手房 <span class="type-count">378</span></button>
+      <button class="type-tab" type="button" data-view-target="ershoufang">二手房 <span class="type-count">379</span></button>
     </nav>
 
     <section class="listing-view" data-view="newhouse">
       <h2 class="listing-view-title">新房综合分 Top 50 <span class="listing-limit">仅展示新房楼盘，按综合分排序</span></h2>
       <p class="meta view-help">点击每行展开查看完整评分详情；名称可点击跳转原始楼盘页面。</p>
       
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#1</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">敏捷水映澜山</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">敏捷水映澜山</a></span>
       <span class="cscore">77分</span>
       <span class="cprice">53-81.5万</span>
       <span class="crooms">3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/北岭山森林公园南侧（七星一路）</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/北岭山森林公园南侧（七星一路）</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价5600元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 89-139㎡</span><span class="summary-metric"><span class="metric-name">总价</span>53-81.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -257,8 +271,8 @@
             <div><span class="dl">户型</span><span>3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 89-139㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/北岭山森林公园南侧（七星一路）</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=7520052131007937" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=7520052131007937" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59036685/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -338,16 +352,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#2</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">70分</span>
       <span class="cprice">86-260万</span>
       <span class="crooms">3/4/5房</span>
-      <span class="summary-location"><span class="cloc">端州区/新东/滨江二路</span></span>
+      <span class="summary-location"><span class="cloc">端州区/新东/滨江二路</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价8600元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 108-268㎡</span><span class="summary-metric"><span class="metric-name">总价</span>86-260万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
     </summary>
     <div class="detail">
@@ -363,8 +377,8 @@
             <div><span class="dl">户型</span><span>3/4/5房</span></div>
             <div><span class="dl">面积</span><span>建面 108-268㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/新东/滨江二路</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=7520052484378755" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826200252.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=7520052484378755" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59063800/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826200252.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -762,14 +776,14 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-changed">
+  <details class="listing-card">
     <summary>
       <span class="rank">#6</span>
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1390745522528256" target="_blank" rel="noopener noreferrer">正域尚苑</a></span>
       <span class="cscore">69分</span>
       <span class="cprice">70-98万</span>
       <span class="crooms">3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/二塔路3号</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/二塔路3号</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价7000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 82-124㎡</span><span class="summary-metric"><span class="metric-name">总价</span>70-98万</span></span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1390745522528256" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
@@ -974,16 +988,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#8</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">光大江山帝景</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">光大江山帝景</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">60-68.5万</span>
       <span class="crooms">3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/龙塘南路光大江山帝景</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/龙塘南路光大江山帝景</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价5500元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 96-114㎡</span><span class="summary-metric"><span class="metric-name">总价</span>60-68.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
     </summary>
     <div class="detail">
@@ -999,8 +1013,8 @@
             <div><span class="dl">户型</span><span>3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 96-114㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/龙塘南路光大江山帝景</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1379344607191040" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826201880.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=0#build_id=1379344607191040" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59107278/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826201880.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -1080,16 +1094,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#9</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">鸿景明园</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">鸿景明园</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">95万</span>
       <span class="crooms">4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价7000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 99-153㎡</span><span class="summary-metric"><span class="metric-name">总价</span>95万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -1105,8 +1119,8 @@
             <div><span class="dl">户型</span><span>4房</span></div>
             <div><span class="dl">面积</span><span>建面 99-153㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/蕉园路与西江北路交叉路口西北侧(云雅苑东南侧约50米)</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=4#build_id=7520055107185416" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=4#build_id=7520055107185416" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59103331/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -1186,16 +1200,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#10</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">名城星颂</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">名城星颂</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">50-88万</span>
       <span class="crooms">2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/马头岗路名城星颂</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/马头岗路名城星颂</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价7300元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 69-114㎡</span><span class="summary-metric"><span class="metric-name">总价</span>50-88万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
     </summary>
     <div class="detail">
@@ -1211,8 +1225,8 @@
             <div><span class="dl">户型</span><span>2/3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 69-114㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/马头岗路名城星颂</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390764805390336" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826202036.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1390764805390336" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59111593/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826202036.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -1504,14 +1518,14 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-changed">
+  <details class="listing-card">
     <summary>
       <span class="rank">#13</span>
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=4#build_id=1390674588139520" target="_blank" rel="noopener noreferrer">中源誉峰</a></span>
       <span class="cscore">67分</span>
       <span class="cprice">67万</span>
       <span class="crooms">3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道中源誉峰</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道中源誉峰</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价7700元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 89㎡</span><span class="summary-metric"><span class="metric-name">总价</span>67万</span></span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=4#build_id=1390674588139520" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
@@ -1610,16 +1624,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#14</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">城投星悦四季</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">城投星悦四季</a></span>
       <span class="cscore">66分</span>
       <span class="cprice">100万</span>
       <span class="crooms">2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/新东/肇庆市端州区信安三路城投星悦四季</span></span>
+      <span class="summary-location"><span class="cloc">端州区/新东/肇庆市端州区信安三路城投星悦四季</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价9800元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 98-164㎡</span><span class="summary-metric"><span class="metric-name">总价</span>100万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -1635,8 +1649,8 @@
             <div><span class="dl">户型</span><span>2/3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 98-164㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/新东/肇庆市端州区信安三路城投星悦四季</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1405962493353984" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1405962493353984" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59112626/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -1822,14 +1836,14 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-changed">
+  <details class="listing-card">
     <summary>
       <span class="rank">#16</span>
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1377875570753536" target="_blank" rel="noopener noreferrer">喜利天澜</a></span>
       <span class="cscore">64分</span>
       <span class="cprice">82-114.5万</span>
       <span class="crooms">3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州城东/二塔路喜利天澜江南美誉</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州城东/二塔路喜利天澜江南美誉</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价8500元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 76-155㎡</span><span class="summary-metric"><span class="metric-name">总价</span>82-114.5万</span></span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1377875570753536" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
@@ -1928,16 +1942,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#17</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">光大锦绣山河</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">光大锦绣山河</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">110万</span>
       <span class="crooms">4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州城西/大鼎路锦绣山河一期</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州城西/大鼎路锦绣山河一期</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价6500元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 143-144㎡</span><span class="summary-metric"><span class="metric-name">总价</span>110万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
     </summary>
     <div class="detail">
@@ -1953,8 +1967,8 @@
             <div><span class="dl">户型</span><span>4房</span></div>
             <div><span class="dl">面积</span><span>建面 143-144㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州城西/大鼎路锦绣山河一期</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=1379366123642880" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2827012832.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=1379366123642880" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985751/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2827012832.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2246,16 +2260,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#20</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">恒裕雅轩</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">恒裕雅轩</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">21-42.5万</span>
       <span class="crooms">1/2/3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州城西/风华路恒裕雅轩</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州城西/风华路恒裕雅轩</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>价格待定</span><span class="summary-metric"><span class="metric-name">面积</span>建面 42-81㎡</span><span class="summary-metric"><span class="metric-name">总价</span>21-42.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -2271,8 +2285,8 @@
             <div><span class="dl">户型</span><span>1/2/3房</span></div>
             <div><span class="dl">面积</span><span>建面 42-81㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州城西/风华路恒裕雅轩</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390753859248128" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390753859248128" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59103269/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2352,16 +2366,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#21</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">华英城明月湾</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">华英城明月湾</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">97.5-125万</span>
       <span class="crooms">3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/广东省肇庆市端州区信安三路8号</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/广东省肇庆市端州区信安三路8号</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价9000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 101-126㎡</span><span class="summary-metric"><span class="metric-name">总价</span>97.5-125万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -2377,8 +2391,8 @@
             <div><span class="dl">户型</span><span>3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 101-126㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/广东省肇庆市端州区信安三路8号</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390764777349120" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390764777349120" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59111591/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2458,16 +2472,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#22</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">嘉湖美都</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">嘉湖美都</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">45-72万</span>
       <span class="crooms">2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/桂园路嘉湖美都</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/桂园路嘉湖美都</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价6000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 70-110㎡</span><span class="summary-metric"><span class="metric-name">总价</span>45-72万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -2483,8 +2497,8 @@
             <div><span class="dl">户型</span><span>2/3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 70-110㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/桂园路嘉湖美都</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390813206061056" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390813206061056" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59008178/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2564,16 +2578,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#23</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">天鹅堡</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">天鹅堡</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">50万</span>
       <span class="crooms">1/2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/信安6路8号</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/信安6路8号</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价9500元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 51-126㎡</span><span class="summary-metric"><span class="metric-name">总价</span>50万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -2589,8 +2603,8 @@
             <div><span class="dl">户型</span><span>1/2/3/4房</span></div>
             <div><span class="dl">面积</span><span>建面 51-126㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/信安6路8号</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=7#build_id=1390754278965248" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=7#build_id=1390754278965248" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59109578/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2776,16 +2790,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#25</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">君安峰景湾</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">君安峰景湾</a></span>
       <span class="cscore">58.4分</span>
       <span class="cprice">48-93万</span>
       <span class="crooms">2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>7500 元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>64-124㎡</span><span class="summary-metric"><span class="metric-name">总价</span>48-93万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -2801,8 +2815,8 @@
             <div><span class="dl">户型</span><span>2/3/4房</span></div>
             <div><span class="dl">面积</span><span>64-124㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59109548/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -2988,16 +3002,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#27</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">城投星悦名苑</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">城投星悦名苑</a></span>
       <span class="cscore">56分</span>
       <span class="cprice">51.5-61.5万</span>
       <span class="crooms">2/3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/端州一路城投星悦名苑</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/端州一路城投星悦名苑</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价6000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 88-102㎡</span><span class="summary-metric"><span class="metric-name">总价</span>51.5-61.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -3013,8 +3027,8 @@
             <div><span class="dl">户型</span><span>2/3房</span></div>
             <div><span class="dl">面积</span><span>建面 88-102㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/端州一路城投星悦名苑</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1379440627638272" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=2#build_id=1379440627638272" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59106747/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -3412,14 +3426,14 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-changed">
+  <details class="listing-card">
     <summary>
       <span class="rank">#31</span>
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=7520049339177896" target="_blank" rel="noopener noreferrer">星湖裕园</a></span>
       <span class="cscore">54分</span>
       <span class="cprice">117.5-411万</span>
       <span class="crooms">3/5/6房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/端州区北岭七星路18号</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/端州区北岭七星路18号</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价5500元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 209-700㎡</span><span class="summary-metric"><span class="metric-name">总价</span>117.5-411万</span></span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=7520049339177896" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
@@ -3518,16 +3532,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#32</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">阳光城·檀府</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">阳光城·檀府</a></span>
       <span class="cscore">54分</span>
       <span class="cprice">120-197.5万</span>
       <span class="crooms">4/5房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道阳光城·檀府</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道阳光城·檀府</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价9800元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 97-190㎡</span><span class="summary-metric"><span class="metric-name">总价</span>120-197.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span><span class="summary-source source-fang">Fang.com</span></span>
     </summary>
     <div class="detail">
@@ -3543,8 +3557,8 @@
             <div><span class="dl">户型</span><span>4/5房</span></div>
             <div><span class="dl">面积</span><span>建面 97-190㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/星湖大道阳光城·檀府</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=1377874485092352" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826200210.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=1#build_id=1377874485092352" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59057084/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a><a class="source-pill" href="https://zhaoqing.newhouse.fang.com/loupan/2826200210.htm" target="_blank" rel="noopener noreferrer">Fang.com</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -3730,16 +3744,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#34</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">城投星悦香江</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">城投星悦香江</a></span>
       <span class="cscore">53.4分</span>
       <span class="cprice">缺少总价</span>
       <span class="crooms">4/6房</span>
-      <span class="summary-location"><span class="cloc">端州区/新东/肇庆市端州区黄岗街道端州区131区江滨一路西北侧地段</span></span>
+      <span class="summary-location"><span class="cloc">端州区/新东/肇庆市端州区黄岗街道端州区131区江滨一路西北侧地段</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>价格待定</span><span class="summary-metric"><span class="metric-name">面积</span>125-251㎡</span><span class="summary-metric"><span class="metric-name">总价</span>缺少总价</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -3755,8 +3769,8 @@
             <div><span class="dl">户型</span><span>4/6房</span></div>
             <div><span class="dl">面积</span><span>125-251㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/新东/肇庆市端州区黄岗街道端州区131区江滨一路西北侧地段</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1419407183888384" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=1419407183888384" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59119839/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -3942,16 +3956,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#36</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">信荣海逸半岛</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">信荣海逸半岛</a></span>
       <span class="cscore">50.4分</span>
       <span class="cprice">5.5-32.3万</span>
       <span class="crooms">3/4/5/8/9房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>550 万元/套起</span><span class="summary-metric"><span class="metric-name">面积</span>100-588㎡</span><span class="summary-metric"><span class="metric-name">总价</span>5.5-32.3万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -3967,8 +3981,8 @@
             <div><span class="dl">户型</span><span>3/4/5/8/9房</span></div>
             <div><span class="dl">面积</span><span>100-588㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985744/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -4366,14 +4380,14 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-changed">
+  <details class="listing-card">
     <summary>
       <span class="rank">#40</span>
       <span class="cname"><a href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=7520054782125954" target="_blank" rel="noopener noreferrer">肇庆·敏捷城</a></span>
       <span class="cscore">49分</span>
       <span class="cprice">65-138万</span>
       <span class="crooms">1房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/肇庆市端州区信安路西侧83区</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/肇庆市端州区信安路西侧83区</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价7000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 68-138㎡</span><span class="summary-metric"><span class="metric-name">总价</span>65-138万</span></span>
       <a class="source-action" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=5#build_id=7520054782125954" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span></span>
@@ -4472,16 +4486,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#41</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">星湖一方</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">星湖一方</a></span>
       <span class="cscore">48.4分</span>
       <span class="cprice">42-68万</span>
       <span class="crooms">缺少户型</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道星湖一方</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/星湖大道星湖一方</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>均价11000元/平</span><span class="summary-metric"><span class="metric-name">面积</span>建面 34-56㎡</span><span class="summary-metric"><span class="metric-name">总价</span>42-68万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-beike">Beike</span><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -4497,8 +4511,8 @@
             <div><span class="dl">户型</span><span>缺少户型</span></div>
             <div><span class="dl">面积</span><span>建面 34-56㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/星湖大道星湖一方</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390766601658368" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://app.api.ke.com/newhouse/shellapp/feed?city_id=441200&amp;page=3#build_id=1390766601658368" target="_blank" rel="noopener noreferrer">Beike</a><a class="source-pill" href="https://mfang.58.com/zq/loupan/59052818/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -4684,16 +4698,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#43</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">保利琅悦花园</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">保利琅悦花园</a></span>
       <span class="cscore">43.4分</span>
       <span class="cprice">120.8-159.9万</span>
       <span class="crooms">3房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>11500 元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>105-139㎡</span><span class="summary-metric"><span class="metric-name">总价</span>120.8-159.9万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -4709,8 +4723,8 @@
             <div><span class="dl">户型</span><span>3房</span></div>
             <div><span class="dl">面积</span><span>105-139㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59114740/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -4790,16 +4804,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#44</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">碧桂园合景美的阅江府</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">碧桂园合景美的阅江府</a></span>
       <span class="cscore">43.4分</span>
       <span class="cprice">111.3-211.1万</span>
       <span class="crooms">3/4/5房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>10500 元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>106-201㎡</span><span class="summary-metric"><span class="metric-name">总价</span>111.3-211.1万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -4815,8 +4829,8 @@
             <div><span class="dl">户型</span><span>3/4/5房</span></div>
             <div><span class="dl">面积</span><span>106-201㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59023338/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -4896,16 +4910,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#45</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">鸿益幸福湖畔</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">鸿益幸福湖畔</a></span>
       <span class="cscore">43.4分</span>
       <span class="cprice">76-210万</span>
       <span class="crooms">2/3/4房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>10000 元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>76-210㎡</span><span class="summary-metric"><span class="metric-name">总价</span>76-210万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -4921,8 +4935,8 @@
             <div><span class="dl">户型</span><span>2/3/4房</span></div>
             <div><span class="dl">面积</span><span>76-210㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985722/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -5002,16 +5016,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#46</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">肇庆保利云禧</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">肇庆保利云禧</a></span>
       <span class="cscore">43.4分</span>
       <span class="cprice">151.3-357.5万</span>
       <span class="crooms">4房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>12500 元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>121-286㎡</span><span class="summary-metric"><span class="metric-name">总价</span>151.3-357.5万</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -5027,8 +5041,8 @@
             <div><span class="dl">户型</span><span>4房</span></div>
             <div><span class="dl">面积</span><span>121-286㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/59098037/?soj_info=%7B%22recno%22:%22longtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -5214,16 +5228,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
+  <details class="listing-card is-changed">
     <summary>
       <span class="rank">#48</span>
-      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">尚东名筑</a></span>
+      <span class="cname"><a href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">尚东名筑</a></span>
       <span class="cscore">40.2分</span>
       <span class="cprice">缺少总价</span>
       <span class="crooms">2/3房</span>
-      <span class="summary-location"><span class="cloc">端州/端州</span></span>
+      <span class="summary-location"><span class="cloc">端州/端州</span><span class="change-badge badge-changed has-tooltip" data-tooltip="字段有微调">变更</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>缺少单价</span><span class="summary-metric"><span class="metric-name">面积</span>77-107㎡</span><span class="summary-metric"><span class="metric-name">总价</span>缺少总价</span></span>
-      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-58">58Aifang</span></span>
     </summary>
     <div class="detail">
@@ -5239,8 +5253,8 @@
             <div><span class="dl">户型</span><span>2/3房</span></div>
             <div><span class="dl">面积</span><span>77-107㎡</span></div>
             <div><span class="dl">位置</span><span>端州/端州</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%2297c6e6e5-3f9e-4dac-8e77-2f865fd9ab8c%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://mfang.58.com/zq/loupan/58985737/?soj_info=%7B%22recno%22:%22realtime-mainlist_rank16317noBusiness%22,%22sid%22:%22b2e5c03c-40e7-4749-a034-8eda28c22d1f%22%7D" target="_blank" rel="noopener noreferrer">58Aifang</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -8511,6 +8525,112 @@
   <details class="listing-card">
     <summary>
       <span class="rank">#29</span>
+      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">江南苑</a></span>
+      <span class="cscore">61分</span>
+      <span class="cprice">68万</span>
+      <span class="crooms">4房</span>
+      <span class="summary-location"><span class="cloc">端州区/端州/江南苑</span></span>
+      <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>5231元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>130㎡</span><span class="summary-metric"><span class="metric-name">总价</span>68万</span></span>
+      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
+    </summary>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>基本信息</h4>
+          <div class="detail-rows">
+            <div><span class="dl">类型</span><span>二手房</span></div>
+            <div><span class="dl">数据源</span><span>FangSecondHand</span></div>
+            <div><span class="dl">名称</span><span>江南苑</span></div>
+            <div><span class="dl">总价</span><span>68万</span></div>
+            <div><span class="dl">单价</span><span>5231元/㎡</span></div>
+            <div><span class="dl">户型</span><span>4房</span></div>
+            <div><span class="dl">面积</span><span>130㎡</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/江南苑</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5444364.html</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <h4>楼盘/户型特征</h4>
+          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
+        </div>
+        <div class="detail-box">
+          <h4>周边配套线索</h4>
+          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km购物中心</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km三甲医院</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km公园</span></div><div class="amenity-scoreline">
+    <span class="detail-label amenity-score">日常商业 0</span>
+    <span class="detail-label amenity-score">教育医疗 0</span>
+    <span class="detail-label amenity-score">城市资源 0</span>
+    </div></div>
+        </div>
+        <div class="detail-box">
+          <h4>坐标</h4>
+          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
+        </div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>评分拆分</h4>
+        <div class="score-chip-grid"><div class="score-chip" title="家庭适配 +21 34%">
+      <span class="score-icon" aria-hidden="true">家</span>
+      <span class="score-main">
+        <span class="score-name">家庭适配</span>
+        <span class="score-value">+21</span>
+      </span>
+      <span class="score-share">34%</span>
+    </div><div class="score-chip" title="楼盘质量 +14 23%">
+      <span class="score-icon" aria-hidden="true">楼</span>
+      <span class="score-main">
+        <span class="score-name">楼盘质量</span>
+        <span class="score-value">+14</span>
+      </span>
+      <span class="score-share">23%</span>
+    </div><div class="score-chip" title="周边即时配套 +0 0%">
+      <span class="score-icon" aria-hidden="true">配</span>
+      <span class="score-main">
+        <span class="score-name">周边即时配套</span>
+        <span class="score-value">+0</span>
+      </span>
+      <span class="score-share">0%</span>
+    </div><div class="score-chip" title="生活圈前景 +13 21%">
+      <span class="score-icon" aria-hidden="true">圈</span>
+      <span class="score-main">
+        <span class="score-name">生活圈前景</span>
+        <span class="score-value">+13</span>
+      </span>
+      <span class="score-share">21%</span>
+    </div><div class="score-chip" title="价格匹配 +8 13%">
+      <span class="score-icon" aria-hidden="true">价</span>
+      <span class="score-main">
+        <span class="score-name">价格匹配</span>
+        <span class="score-value">+8</span>
+      </span>
+      <span class="score-share">13%</span>
+    </div><div class="score-chip" title="信息可信度 +5 8%">
+      <span class="score-icon" aria-hidden="true">信</span>
+      <span class="score-main">
+        <span class="score-name">信息可信度</span>
+        <span class="score-value">+5</span>
+      </span>
+      <span class="score-share">8%</span>
+    </div><div class="score-chip" title="风险扣分 +0 0%">
+      <span class="score-icon" aria-hidden="true">险</span>
+      <span class="score-main">
+        <span class="score-name">风险扣分</span>
+        <span class="score-value">+0</span>
+      </span>
+      <span class="score-share">0%</span>
+    </div></div>
+      </div>
+      <div class="detail-box" style="margin-top:12px">
+        <h4>得分因素</h4>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 4房</span><span class="factor-tag factor-price">价格 68万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
+      </div>
+    </div>
+  </details>
+  <details class="listing-card">
+    <summary>
+      <span class="rank">#30</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_4806012.html" target="_blank" rel="noopener noreferrer">康乐北一街小区</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">63万</span>
@@ -8616,7 +8736,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#30</span>
+      <span class="rank">#31</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290585.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">118万</span>
@@ -8722,7 +8842,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#31</span>
+      <span class="rank">#32</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290920.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">110万</span>
@@ -8828,7 +8948,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#32</span>
+      <span class="rank">#33</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290672.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">120万</span>
@@ -8934,7 +9054,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#33</span>
+      <span class="rank">#34</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290842.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">105万</span>
@@ -9040,7 +9160,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#34</span>
+      <span class="rank">#35</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290656.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">115万</span>
@@ -9146,7 +9266,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#35</span>
+      <span class="rank">#36</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290601.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">61分</span>
       <span class="cprice">105万</span>
@@ -9252,7 +9372,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#36</span>
+      <span class="rank">#37</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5443572.html" target="_blank" rel="noopener noreferrer">海伦堡·林隐天下</a></span>
       <span class="cscore">60分</span>
       <span class="cprice">99万</span>
@@ -9358,7 +9478,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#37</span>
+      <span class="rank">#38</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5387400.html" target="_blank" rel="noopener noreferrer">锦绣莱茵名苑</a></span>
       <span class="cscore">60分</span>
       <span class="cprice">98万</span>
@@ -9464,7 +9584,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#38</span>
+      <span class="rank">#39</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290793.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">59分</span>
       <span class="cprice">110万</span>
@@ -9570,7 +9690,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#39</span>
+      <span class="rank">#40</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290776.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">59分</span>
       <span class="cprice">101万</span>
@@ -9676,7 +9796,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#40</span>
+      <span class="rank">#41</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290669.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">59分</span>
       <span class="cprice">120万</span>
@@ -9782,7 +9902,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#41</span>
+      <span class="rank">#42</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290865.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">59分</span>
       <span class="cprice">112万</span>
@@ -9888,7 +10008,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#42</span>
+      <span class="rank">#43</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290798.html" target="_blank" rel="noopener noreferrer">世茂滨江壹号</a></span>
       <span class="cscore">59分</span>
       <span class="cprice">118万</span>
@@ -9994,7 +10114,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#43</span>
+      <span class="rank">#44</span>
       <span class="cname"><a href="https://zq.ke.com/ershoufang/105124290854.html" target="_blank" rel="noopener noreferrer">幸福湖畔</a></span>
       <span class="cscore">57.8分</span>
       <span class="cprice">89.8万</span>
@@ -10100,7 +10220,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#44</span>
+      <span class="rank">#45</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5369513.html" target="_blank" rel="noopener noreferrer">大唐盛世</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">104万</span>
@@ -10206,7 +10326,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#45</span>
+      <span class="rank">#46</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5471029.html" target="_blank" rel="noopener noreferrer">东湖居</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">58万</span>
@@ -10312,7 +10432,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#46</span>
+      <span class="rank">#47</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5468272.html" target="_blank" rel="noopener noreferrer">端城雅苑</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">43万</span>
@@ -10418,7 +10538,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#47</span>
+      <span class="rank">#48</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5426311.html" target="_blank" rel="noopener noreferrer">端州中源誉峰</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">103万</span>
@@ -10522,16 +10642,16 @@
       </div>
     </div>
   </details>
-  <details class="listing-card is-new">
+  <details class="listing-card">
     <summary>
-      <span class="rank">#48</span>
-      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">华生中心</a></span>
+      <span class="rank">#49</span>
+      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">华生中心</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">113.8万</span>
       <span class="crooms">3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/华生中心</span><span class="change-badge badge-new">新增</span></span>
+      <span class="summary-location"><span class="cloc">端州区/端州/华生中心</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>9446元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>120.48㎡</span><span class="summary-metric"><span class="metric-name">总价</span>113.8万</span></span>
-      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
     </summary>
     <div class="detail">
@@ -10547,8 +10667,8 @@
             <div><span class="dl">户型</span><span>3房</span></div>
             <div><span class="dl">面积</span><span>120.48㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/华生中心</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5452159.html</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5452245.html</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -10630,7 +10750,7 @@
   </details>
   <details class="listing-card">
     <summary>
-      <span class="rank">#49</span>
+      <span class="rank">#50</span>
       <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5368964.html" target="_blank" rel="noopener noreferrer">尚东康城</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">103万</span>
@@ -10734,112 +10854,6 @@
       </div>
     </div>
   </details>
-  <details class="listing-card">
-    <summary>
-      <span class="rank">#50</span>
-      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5371511.html" target="_blank" rel="noopener noreferrer">天宁广场</a></span>
-      <span class="cscore">57分</span>
-      <span class="cprice">50万</span>
-      <span class="crooms">3房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/天宁广场</span></span>
-      <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>4660元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>107.3㎡</span><span class="summary-metric"><span class="metric-name">总价</span>50万</span></span>
-      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5371511.html" target="_blank" rel="noopener noreferrer">查看来源</a>
-      <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
-    </summary>
-    <div class="detail">
-      <div class="detail-grid">
-        <div class="detail-box">
-          <h4>基本信息</h4>
-          <div class="detail-rows">
-            <div><span class="dl">类型</span><span>二手房</span></div>
-            <div><span class="dl">数据源</span><span>FangSecondHand</span></div>
-            <div><span class="dl">名称</span><span>天宁广场</span></div>
-            <div><span class="dl">总价</span><span>50万</span></div>
-            <div><span class="dl">单价</span><span>4660元/㎡</span></div>
-            <div><span class="dl">户型</span><span>3房</span></div>
-            <div><span class="dl">面积</span><span>107.3㎡</span></div>
-            <div><span class="dl">位置</span><span>端州区/端州/天宁广场</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5371511.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5371511.html</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5371511.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
-          </div>
-        </div>
-        <div class="detail-box">
-          <h4>楼盘/户型特征</h4>
-          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
-          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span></div>
-        </div>
-        <div class="detail-box">
-          <h4>周边配套线索</h4>
-          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km购物中心</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km三甲医院</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km公园</span></div><div class="amenity-scoreline">
-    <span class="detail-label amenity-score">日常商业 0</span>
-    <span class="detail-label amenity-score">教育医疗 0</span>
-    <span class="detail-label amenity-score">城市资源 0</span>
-    </div></div>
-        </div>
-        <div class="detail-box">
-          <h4>坐标</h4>
-          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
-        </div>
-      </div>
-      <div class="detail-box" style="margin-top:12px">
-        <h4>评分拆分</h4>
-        <div class="score-chip-grid"><div class="score-chip" title="家庭适配 +18 32%">
-      <span class="score-icon" aria-hidden="true">家</span>
-      <span class="score-main">
-        <span class="score-name">家庭适配</span>
-        <span class="score-value">+18</span>
-      </span>
-      <span class="score-share">32%</span>
-    </div><div class="score-chip" title="楼盘质量 +16 28%">
-      <span class="score-icon" aria-hidden="true">楼</span>
-      <span class="score-main">
-        <span class="score-name">楼盘质量</span>
-        <span class="score-value">+16</span>
-      </span>
-      <span class="score-share">28%</span>
-    </div><div class="score-chip" title="周边即时配套 +0 0%">
-      <span class="score-icon" aria-hidden="true">配</span>
-      <span class="score-main">
-        <span class="score-name">周边即时配套</span>
-        <span class="score-value">+0</span>
-      </span>
-      <span class="score-share">0%</span>
-    </div><div class="score-chip" title="生活圈前景 +13 23%">
-      <span class="score-icon" aria-hidden="true">圈</span>
-      <span class="score-main">
-        <span class="score-name">生活圈前景</span>
-        <span class="score-value">+13</span>
-      </span>
-      <span class="score-share">23%</span>
-    </div><div class="score-chip" title="价格匹配 +5 9%">
-      <span class="score-icon" aria-hidden="true">价</span>
-      <span class="score-main">
-        <span class="score-name">价格匹配</span>
-        <span class="score-value">+5</span>
-      </span>
-      <span class="score-share">9%</span>
-    </div><div class="score-chip" title="信息可信度 +5 9%">
-      <span class="score-icon" aria-hidden="true">信</span>
-      <span class="score-main">
-        <span class="score-name">信息可信度</span>
-        <span class="score-value">+5</span>
-      </span>
-      <span class="score-share">9%</span>
-    </div><div class="score-chip" title="风险扣分 +0 0%">
-      <span class="score-icon" aria-hidden="true">险</span>
-      <span class="score-main">
-        <span class="score-name">风险扣分</span>
-        <span class="score-value">+0</span>
-      </span>
-      <span class="score-share">0%</span>
-    </div></div>
-      </div>
-      <div class="detail-box" style="margin-top:12px">
-        <h4>得分因素</h4>
-        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 50万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
-      </div>
-    </div>
-  </details>
       
       <h2>二手房疑似下架</h2>
       <p class="meta" style="margin-bottom:8px">以下二手房房源历史抓取中出现过，但本次抓取没有再抓到，暂按疑似下架处理。</p>
@@ -10847,119 +10861,13 @@
   <details class="listing-card is-delisted">
     <summary>
       <span class="rank">下架 1</span>
-      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">江南苑</a></span>
-      <span class="cscore">61分</span>
-      <span class="cprice">68万</span>
-      <span class="crooms">4房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/江南苑</span><span class="change-badge badge-delisted">下架</span></span>
-      <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>5231元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>130㎡</span><span class="summary-metric"><span class="metric-name">总价</span>68万</span></span>
-      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">查看来源</a>
-      <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
-    </summary>
-    <div class="detail">
-      <div class="detail-grid">
-        <div class="detail-box">
-          <h4>基本信息</h4>
-          <div class="detail-rows">
-            <div><span class="dl">类型</span><span>二手房</span></div>
-            <div><span class="dl">数据源</span><span>FangSecondHand</span></div>
-            <div><span class="dl">名称</span><span>江南苑</span></div>
-            <div><span class="dl">总价</span><span>68万</span></div>
-            <div><span class="dl">单价</span><span>5231元/㎡</span></div>
-            <div><span class="dl">户型</span><span>4房</span></div>
-            <div><span class="dl">面积</span><span>130㎡</span></div>
-            <div><span class="dl">位置</span><span>端州区/端州/江南苑</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5444364.html</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5444364.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
-          </div>
-        </div>
-        <div class="detail-box">
-          <h4>楼盘/户型特征</h4>
-          <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
-          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
-        </div>
-        <div class="detail-box">
-          <h4>周边配套线索</h4>
-          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km购物中心</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km三甲医院</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km公园</span></div><div class="amenity-scoreline">
-    <span class="detail-label amenity-score">日常商业 0</span>
-    <span class="detail-label amenity-score">教育医疗 0</span>
-    <span class="detail-label amenity-score">城市资源 0</span>
-    </div></div>
-        </div>
-        <div class="detail-box">
-          <h4>坐标</h4>
-          <div style="font-size:13px"><span style="color:#94a3b8">暂无坐标</span></div>
-        </div>
-      </div>
-      <div class="detail-box" style="margin-top:12px">
-        <h4>评分拆分</h4>
-        <div class="score-chip-grid"><div class="score-chip" title="家庭适配 +21 34%">
-      <span class="score-icon" aria-hidden="true">家</span>
-      <span class="score-main">
-        <span class="score-name">家庭适配</span>
-        <span class="score-value">+21</span>
-      </span>
-      <span class="score-share">34%</span>
-    </div><div class="score-chip" title="楼盘质量 +14 23%">
-      <span class="score-icon" aria-hidden="true">楼</span>
-      <span class="score-main">
-        <span class="score-name">楼盘质量</span>
-        <span class="score-value">+14</span>
-      </span>
-      <span class="score-share">23%</span>
-    </div><div class="score-chip" title="周边即时配套 +0 0%">
-      <span class="score-icon" aria-hidden="true">配</span>
-      <span class="score-main">
-        <span class="score-name">周边即时配套</span>
-        <span class="score-value">+0</span>
-      </span>
-      <span class="score-share">0%</span>
-    </div><div class="score-chip" title="生活圈前景 +13 21%">
-      <span class="score-icon" aria-hidden="true">圈</span>
-      <span class="score-main">
-        <span class="score-name">生活圈前景</span>
-        <span class="score-value">+13</span>
-      </span>
-      <span class="score-share">21%</span>
-    </div><div class="score-chip" title="价格匹配 +8 13%">
-      <span class="score-icon" aria-hidden="true">价</span>
-      <span class="score-main">
-        <span class="score-name">价格匹配</span>
-        <span class="score-value">+8</span>
-      </span>
-      <span class="score-share">13%</span>
-    </div><div class="score-chip" title="信息可信度 +5 8%">
-      <span class="score-icon" aria-hidden="true">信</span>
-      <span class="score-main">
-        <span class="score-name">信息可信度</span>
-        <span class="score-value">+5</span>
-      </span>
-      <span class="score-share">8%</span>
-    </div><div class="score-chip" title="风险扣分 +0 0%">
-      <span class="score-icon" aria-hidden="true">险</span>
-      <span class="score-main">
-        <span class="score-name">风险扣分</span>
-        <span class="score-value">+0</span>
-      </span>
-      <span class="score-share">0%</span>
-    </div></div>
-      </div>
-      <div class="detail-box" style="margin-top:12px">
-        <h4>得分因素</h4>
-        <div class="factor-tags"><span class="factor-tag factor-family">户型 4房</span><span class="factor-tag factor-price">价格 68万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
-      </div>
-    </div>
-  </details>
-  <details class="listing-card is-delisted">
-    <summary>
-      <span class="rank">下架 2</span>
-      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">华生中心</a></span>
+      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">华生中心</a></span>
       <span class="cscore">57分</span>
       <span class="cprice">113.8万</span>
       <span class="crooms">3房</span>
       <span class="summary-location"><span class="cloc">端州区/端州/华生中心</span><span class="change-badge badge-delisted">下架</span></span>
       <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>9446元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>120.48㎡</span><span class="summary-metric"><span class="metric-name">总价</span>113.8万</span></span>
-      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
     </summary>
     <div class="detail">
@@ -10975,8 +10883,8 @@
             <div><span class="dl">户型</span><span>3房</span></div>
             <div><span class="dl">面积</span><span>120.48㎡</span></div>
             <div><span class="dl">位置</span><span>端州区/端州/华生中心</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5452245.html</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5452159.html</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452159.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5452245.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
           </div>
         </div>
         <div class="detail-box">
@@ -11058,14 +10966,14 @@
   </details>
   <details class="listing-card is-delisted">
     <summary>
-      <span class="rank">下架 3</span>
-      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5379979.html" target="_blank" rel="noopener noreferrer">凯信星悦</a></span>
+      <span class="rank">下架 2</span>
+      <span class="cname"><a href="https://m.fang.com/esf/zhaoqing/16_5411591.html" target="_blank" rel="noopener noreferrer">敏捷·水映澜山</a></span>
       <span class="cscore">53分</span>
-      <span class="cprice">72万</span>
-      <span class="crooms">2房</span>
-      <span class="summary-location"><span class="cloc">端州区/端州/凯信星悦</span><span class="change-badge badge-delisted">下架</span></span>
-      <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>8889元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>81㎡</span><span class="summary-metric"><span class="metric-name">总价</span>72万</span></span>
-      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5379979.html" target="_blank" rel="noopener noreferrer">查看来源</a>
+      <span class="cprice">68万</span>
+      <span class="crooms">3房</span>
+      <span class="summary-location"><span class="cloc">端州区/端州/敏捷·水映澜山</span><span class="change-badge badge-delisted">下架</span></span>
+      <span class="summary-metrics"><span class="summary-metric"><span class="metric-name">单价</span>7010元/㎡</span><span class="summary-metric"><span class="metric-name">面积</span>97㎡</span><span class="summary-metric"><span class="metric-name">总价</span>68万</span></span>
+      <a class="source-action" href="https://m.fang.com/esf/zhaoqing/16_5411591.html" target="_blank" rel="noopener noreferrer">查看来源</a>
       <span class="summary-sources"><span class="summary-source source-fang">FangSecondHand</span></span>
     </summary>
     <div class="detail">
@@ -11075,24 +10983,24 @@
           <div class="detail-rows">
             <div><span class="dl">类型</span><span>二手房</span></div>
             <div><span class="dl">数据源</span><span>FangSecondHand</span></div>
-            <div><span class="dl">名称</span><span>凯信星悦</span></div>
-            <div><span class="dl">总价</span><span>72万</span></div>
-            <div><span class="dl">单价</span><span>8889元/㎡</span></div>
-            <div><span class="dl">户型</span><span>2房</span></div>
-            <div><span class="dl">面积</span><span>81㎡</span></div>
-            <div><span class="dl">位置</span><span>端州区/端州/凯信星悦</span></div>
-            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5379979.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5379979.html</a></span></div>
-            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5379979.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
+            <div><span class="dl">名称</span><span>敏捷·水映澜山</span></div>
+            <div><span class="dl">总价</span><span>68万</span></div>
+            <div><span class="dl">单价</span><span>7010元/㎡</span></div>
+            <div><span class="dl">户型</span><span>3房</span></div>
+            <div><span class="dl">面积</span><span>97㎡</span></div>
+            <div><span class="dl">位置</span><span>端州区/端州/敏捷·水映澜山</span></div>
+            <div><span class="dl">查看来源</span><span><a href="https://m.fang.com/esf/zhaoqing/16_5411591.html" target="_blank" rel="noopener noreferrer">https://m.fang.com/esf/zhaoqing/16_5411591.html</a></span></div>
+            <div><span class="dl">全部来源</span><span class="source-pills"><a class="source-pill" href="https://m.fang.com/esf/zhaoqing/16_5411591.html" target="_blank" rel="noopener noreferrer">FangSecondHand</a></span></div>
           </div>
         </div>
         <div class="detail-box">
           <h4>楼盘/户型特征</h4>
           <div class="tag-list"><span style="color:#94a3b8">暂无明确楼盘/户型特征</span></div>
-          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">接近80万预算</span></div>
+          <div class="tag-list" style="margin-top:8px"><span class="detail-label label-flag">命中3-4房</span><span class="detail-label label-flag">接近80万预算</span></div>
         </div>
         <div class="detail-box">
           <h4>周边配套线索</h4>
-          <div class="amenity-list"><div class="amenity-row"><span class="amenity-kind">商业</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km购物中心</span></div><div class="amenity-row"><span class="amenity-kind">医院</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km三甲医院</span></div><div class="amenity-row"><span class="amenity-kind">公园</span><span class="amenity-values">3km公园 3km购物中心 3km三甲医院、3km公园</span></div><div class="amenity-scoreline">
+          <div class="amenity-list"><div class="amenity-empty">暂无具体配套线索，后续接入地图 POI 后补充名称</div><div class="amenity-scoreline">
     <span class="detail-label amenity-score">日常商业 0</span>
     <span class="detail-label amenity-score">教育医疗 0</span>
     <span class="detail-label amenity-score">城市资源 0</span>
@@ -11105,20 +11013,20 @@
       </div>
       <div class="detail-box" style="margin-top:12px">
         <h4>评分拆分</h4>
-        <div class="score-chip-grid"><div class="score-chip" title="家庭适配 +9 17%">
+        <div class="score-chip-grid"><div class="score-chip" title="家庭适配 +21 40%">
       <span class="score-icon" aria-hidden="true">家</span>
       <span class="score-main">
         <span class="score-name">家庭适配</span>
-        <span class="score-value">+9</span>
+        <span class="score-value">+21</span>
       </span>
-      <span class="score-share">17%</span>
-    </div><div class="score-chip" title="楼盘质量 +16 30%">
+      <span class="score-share">40%</span>
+    </div><div class="score-chip" title="楼盘质量 +11 21%">
       <span class="score-icon" aria-hidden="true">楼</span>
       <span class="score-main">
         <span class="score-name">楼盘质量</span>
-        <span class="score-value">+16</span>
+        <span class="score-value">+11</span>
       </span>
-      <span class="score-share">30%</span>
+      <span class="score-share">21%</span>
     </div><div class="score-chip" title="周边即时配套 +0 0%">
       <span class="score-icon" aria-hidden="true">配</span>
       <span class="score-main">
@@ -11126,20 +11034,20 @@
         <span class="score-value">+0</span>
       </span>
       <span class="score-share">0%</span>
-    </div><div class="score-chip" title="生活圈前景 +13 25%">
+    </div><div class="score-chip" title="生活圈前景 +8 15%">
       <span class="score-icon" aria-hidden="true">圈</span>
       <span class="score-main">
         <span class="score-name">生活圈前景</span>
-        <span class="score-value">+13</span>
+        <span class="score-value">+8</span>
       </span>
-      <span class="score-share">25%</span>
-    </div><div class="score-chip" title="价格匹配 +10 19%">
+      <span class="score-share">15%</span>
+    </div><div class="score-chip" title="价格匹配 +8 15%">
       <span class="score-icon" aria-hidden="true">价</span>
       <span class="score-main">
         <span class="score-name">价格匹配</span>
-        <span class="score-value">+10</span>
+        <span class="score-value">+8</span>
       </span>
-      <span class="score-share">19%</span>
+      <span class="score-share">15%</span>
     </div><div class="score-chip" title="信息可信度 +5 9%">
       <span class="score-icon" aria-hidden="true">信</span>
       <span class="score-main">
@@ -11158,7 +11066,7 @@
       </div>
       <div class="detail-box" style="margin-top:12px">
         <h4>得分因素</h4>
-        <div class="factor-tags"><span class="factor-tag factor-family">家庭适配 +9</span><span class="factor-tag factor-price">价格 72万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-prospect">生活圈 +13</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
+        <div class="factor-tags"><span class="factor-tag factor-family">户型 3房</span><span class="factor-tag factor-price">价格 68万</span><span class="factor-tag factor-quality">房源质量</span><span class="factor-tag factor-prospect">生活圈 +8</span><span class="factor-tag factor-location">端州</span><span class="factor-tag factor-quality">质量线索</span><span class="factor-tag factor-confidence">信息较全</span></div>
       </div>
     </div>
   </details>
